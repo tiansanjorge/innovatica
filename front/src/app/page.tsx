@@ -1,12 +1,14 @@
-import { Card } from "./components/Card/Card";
-import { productsToPreLoad } from "./helpers/preLoadProducts";
+import { Card } from "../components/Card/Card";
+import { productsToPreLoad } from "../utils/preLoadProducts";
 
-export default function Home() {
+export default function Index() {
   return (
-    <div>
-      {productsToPreLoad.map((product, index) => (
-        <Card key={index} itemKey={index} product={product} />
-      ))}
-    </div>
+    <>
+      <div>
+        {productsToPreLoad.map((product, index) => (
+          <Card key={index} itemKey={index} product={product} />
+        ))}
+      </div>
+    </>
   );
 }
