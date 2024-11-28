@@ -1,13 +1,16 @@
-import { Card } from "../components/Card/Card";
-import { productsToPreLoad } from "../utils/preLoadProducts";
+import { SliderHome } from "@/components/SliderHome/SliderHome";
+import { CategoryPreview } from "@/components/CategoryPreview/CategoryPreview";
+import { HelpBanner } from "@/components/HelpBanner/HelpBanner";
 
-export default function Index() {
+export default function Home() {
   return (
     <>
       <div>
-        {productsToPreLoad.map((product, index) => (
-          <Card key={index} itemKey={index} product={product} />
-        ))}
+        <SliderHome />
+        <CategoryPreview category="Más Recomendados" />
+        <CategoryPreview category="Celulares" />
+        <CategoryPreview category="Televisiones" />
+        <HelpBanner />
       </div>
     </>
   );

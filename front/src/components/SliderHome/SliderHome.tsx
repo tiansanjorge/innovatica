@@ -3,18 +3,22 @@
 
 import { useState } from "react";
 
-const images = ["/images/img1.jpg", "/images/img2.jpg", "/images/img3.jpg"];
+const images: string[] = [
+  "/images/img1.jpg",
+  "/images/img2.jpg",
+  "/images/img3.jpg",
+];
 
 export function SliderHome() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const prevSlide = () => {
+  const prevSlide = (): void => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
-  const nextSlide = () => {
+  const nextSlide = (): void => {
     setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
