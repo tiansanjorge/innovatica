@@ -7,7 +7,7 @@ interface CategoryPreviewProps {
 
 export function CategoryPreview({ category }: CategoryPreviewProps) {
   return (
-    <div className="flex w-full px-2">
+    <div className="flex w-full">
       {productsToPreLoad.map((product, index) => (
         <CardPreview key={index} product={product} />
       ))}

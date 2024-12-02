@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
@@ -16,7 +17,7 @@ export function Header() {
 
       {/* Navegación principal */}
       <div className="flex items-center gap-10">
-        <Link href="/home">Home</Link>
+        <Link href="/">Home</Link>
         <div className="relative inline-block text-left">
           <button
             onClick={() => setIsOpen(!isOpen)}
