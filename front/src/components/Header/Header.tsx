@@ -12,7 +12,7 @@ export function Header() {
     <div className="flex items-center justify-between px-4 py-2 bg-gray-100">
       {/* Logo */}
       <div className="mr-10">
-        <img src="null" alt="Logo" />
+        <img className="w-64" src="/images/logo.png" alt="Logo" />
       </div>
 
       {/* Navegación principal */}
@@ -26,7 +26,7 @@ export function Header() {
             Categorías
           </button>
           {isOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded shadow">
+            <div className="absolute right-0 mt-2 w-48 z-10 bg-white rounded shadow">
               <Link
                 href="/recomended"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
@@ -70,7 +70,7 @@ export function Header() {
           <img src="null" alt="Usuario" />
         </button>
         {isOpen2 && (
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded shadow">
+          <div className="absolute right-0 mt-2 w-48 z-10 bg-white rounded shadow">
             <Link
               href="/user-dashboard"
               className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
