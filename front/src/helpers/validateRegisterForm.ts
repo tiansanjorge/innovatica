@@ -1,4 +1,4 @@
-import { IUserData } from "@/Interfaces/user";
+import { IUserData } from "@/Interfaces/interfaces";
 
 interface IErrors {
   [key: string]: string;
@@ -7,7 +7,7 @@ interface IErrors {
 export const validateRegisterForm = (newUserData: IUserData) => {
   const errors: IErrors = {};
 
-  if (!newUserData.name) {
+  if (!newUserData.username) {
     errors.name = "Campo Obligatorio";
   }
   if (!newUserData.address) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { IUserData } from "@/Interfaces/user";
+import { IUserData } from "@/Interfaces/interfaces";
 import { validateRegisterForm } from "@/helpers/validateRegisterForm";
 import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
@@ -37,6 +37,7 @@ export function RegisterForm() {
       ...touched,
       [name]: true,
     });
+    console.log(errors);
   };
 
   const submitRegisterForm = async (event: FormEvent<HTMLFormElement>) => {
@@ -116,110 +117,6 @@ export function RegisterForm() {
           onChange={handleInputChange}
           onBlur={handleBlur}
         />
-        {/* <div className="mt-1 text-sm text-red-500">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-700"
-            htmlFor="name"
-          >
-            Nombre:
-            <input
-              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              name="name"
-              type="string"
-              value={newUserData.name}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-            />
-          </label>
-          {touched.name && errors.name && <p> {errors.name} </p>}
-        </div>
-        <div className="mt-1 text-sm text-red-500">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-700"
-            htmlFor="name"
-          >
-            Dirección:
-            <input
-              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              name="address"
-              type="string"
-              value={newUserData.address}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-            />
-          </label>
-          {touched.address && errors.address && <p> {errors.address} </p>}
-        </div>
-        <div className="mt-1 text-sm text-red-500">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-700"
-            htmlFor="phone"
-          >
-            Teléfono:
-            <input
-              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              name="phone"
-              type="number"
-              value={newUserData.phone ?? ""}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-            />
-          </label>
-          {touched.phone && errors.phone && <p> {errors.phone} </p>}
-        </div>
-        <div className="mt-1 text-sm text-red-500">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-700"
-            htmlFor="email"
-          >
-            Email:
-            <input
-              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              name="email"
-              type="string"
-              value={newUserData.email}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-            />
-          </label>
-          {touched.email && errors.email && <p> {errors.email} </p>}
-        </div>
-        <div className="mt-1 text-sm text-red-500">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-700"
-            htmlFor="password"
-          >
-            Contraseña:
-            <input
-              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              name="password"
-              type="password"
-              value={newUserData.password}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-            />
-          </label>
-          {touched.password && errors.password && <p> {errors.password} </p>}
-        </div>
-        <div className="mt-1 text-sm text-red-500">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-700"
-            htmlFor="repeatPassword"
-          >
-            Repetir contraseña:
-            <input
-              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              name="repeatPassword"
-              type="password"
-              value={newUserData.repeatPassword}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-            />
-          </label>
-          {touched.repeatPassword && errors.repeatPassword && (
-            <p> {errors.repeatPassword} </p>
-          )}
-        </div> */}
         <button
           className={`px-6 py-2 text-white rounded-lg focus:outline-none focus:ring-2 ${
             isFormValid

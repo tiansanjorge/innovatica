@@ -3,7 +3,7 @@
 import { validateLoginForm } from "@/helpers/validateLoginForm";
 import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
-import { IUserCredentials } from "../../Interfaces/user";
+import { IUserCredentials } from "../../Interfaces/interfaces";
 
 export default function Login() {
   const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
