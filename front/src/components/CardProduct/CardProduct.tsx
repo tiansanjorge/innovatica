@@ -7,7 +7,7 @@ interface IProduct {
   categoryId: number;
 }
 
-export function CardPreview({ product }: { product: IProduct }) {
+export function CardProduct({ product }: { product: IProduct }) {
   const { name, price, image } = product;
   return (
     <div className="w-1/4">

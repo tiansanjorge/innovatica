@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div>
         <SliderHome />
-        <CategoryPreview category="Más Recomendados" />
+        <CategoryPreview category="Recomendados" />
         <CategoryPreview category="Celulares" />
         <CategoryPreview category="Televisiones" />
         <HelpBanner />

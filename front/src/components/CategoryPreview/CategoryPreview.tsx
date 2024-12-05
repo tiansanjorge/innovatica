@@ -1,5 +1,5 @@
 import { productsToPreLoad } from "@/utils/preLoadProducts";
-import { CardPreview } from "../CardPreview/CardPreview";
+import { CardProduct } from "../CardProduct/CardProduct";
 
 interface CategoryPreviewProps {
   category: string;
@@ -9,7 +9,7 @@ export function CategoryPreview({ category }: CategoryPreviewProps) {
   return (
     <div className="flex w-full">
       {productsToPreLoad.map((product, index) => (
-        <CardPreview key={index} product={product} />
+        <CardProduct key={index} product={product} />
       ))}
       <div className="">
         <div>
