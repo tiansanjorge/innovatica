@@ -1,15 +1,16 @@
 import { SliderHome } from "@/components/SliderHome/SliderHome";
-import { CategoryPreview } from "@/components/CategoryPreview/CategoryPreview";
 import { HelpBanner } from "@/components/HelpBanner/HelpBanner";
+import { Products } from "@/components/Products/Products";
+import { getProducts } from "@/services/services";
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <>
       <div>
         <SliderHome />
-        <CategoryPreview category="Recomendados" />
-        <CategoryPreview category="Celulares" />
-        <CategoryPreview category="Televisiones" />
+        <Products products={products} />
         <HelpBanner />
       </div>
     </>

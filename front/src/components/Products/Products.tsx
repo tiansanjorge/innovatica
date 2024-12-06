@@ -1,19 +1,15 @@
-import { productsToPreLoad } from "@/utils/preLoadProducts";
+import { IProduct } from "@/Interfaces/interfaces";
 import { CardProduct } from "../CardProduct/CardProduct";
 
-interface CategoryPreviewProps {
-  category: string;
-}
-
-export function CategoryPreview({ category }: CategoryPreviewProps) {
+export function Products({ products }: { products: IProduct[] }) {
   return (
-    <div className="flex w-full">
-      {productsToPreLoad.map((product, index) => (
+    <div className="flex w-full flex-wrap p-10">
+      {products.map((product, index) => (
         <CardProduct key={index} product={product} />
       ))}
       <div className="">
         <div>
-          <h3>{category}</h3>
+          <h3>Productos</h3>
         </div>
         <button>
           <svg
