@@ -13,14 +13,15 @@ interface IProduct {
   image: string;
   categoryId: number;
 }
-
+const apiURL = process.env.NEXT_PUBLIC_API_URL;
+console.log(apiURL);
 export default function AllProducts() {
   const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/products`);
+        const res = await axios.get(`${apiURL}/products`);
         setProducts(res.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
