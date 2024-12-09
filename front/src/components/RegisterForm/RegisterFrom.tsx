@@ -5,10 +5,11 @@ import { validateRegisterForm } from "@/helpers/validateRegisterForm";
 import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
 import { FormField } from "./FormField";
+import Swal from "sweetalert2";
 
 export function RegisterForm() {
   const [newUserData, setNewUserData] = useState<IUserData>({
-    username: "",
+    name: "",
     address: "",
     phone: undefined,
     email: "",
@@ -37,12 +38,51 @@ export function RegisterForm() {
       ...touched,
       [name]: true,
     });
-    console.log(errors);
   };
 
-  const submitRegisterForm = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("submit OK");
+    try {
+      const response = await fetch("http://localhost:3001/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUserData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(
+          "Form submitted successfully - Respuesta del servidor:",
+          data
+        );
+        setNewUserData({
+          name: "",
+          address: "",
+          phone: undefined,
+          email: "",
+          password: "",
+          repeatPassword: "",
+        });
+        setErrors({});
+        setTouched({});
+        Swal.fire({
+          title: "Exito!",
+          text: "Te has registrado correctamente.",
+          icon: "success",
+          confirmButtonText: "Iniciar Sesión",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/login"; // Redirige a /login
+          }
+        });
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Failed to submit form", error);
+    }
   };
 
   const isFormValid =
@@ -53,17 +93,17 @@ export function RegisterForm() {
     <div className="w-full bg-gray-100 p-6 text-center">
       <form
         className="w-1/2 max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg"
-        onSubmit={submitRegisterForm}
+        onSubmit={handleSubmit}
       >
         <h1>Registro</h1>
 
         <FormField
           label="Nombre"
-          name="username"
+          name="name"
           type="string"
-          value={newUserData.username}
-          error={errors.username}
-          touched={touched.username}
+          value={newUserData.name}
+          error={errors.name}
+          touched={touched.name}
           onChange={handleInputChange}
           onBlur={handleBlur}
         />

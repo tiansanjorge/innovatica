@@ -7,11 +7,11 @@ interface IErrors {
 export const validateRegisterForm = (newUserData: IUserData) => {
   const errors: IErrors = {};
 
-  if (!newUserData.username) {
+  if (!newUserData.name) {
     errors.name = "Campo Obligatorio";
   }
   if (!newUserData.address) {
-    errors.name = "Campo Obligatorio";
+    errors.address = "Campo Obligatorio";
   }
   if (!newUserData.phone && newUserData.phone !== 0) {
     errors.phone = "Campo Obligatorio";
