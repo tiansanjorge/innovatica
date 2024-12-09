@@ -74,13 +74,21 @@ export function RegisterForm() {
           confirmButtonText: "Iniciar Sesión",
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = "/login"; // Redirige a /login
+            window.location.href = "/login";
           }
         });
       } else {
-        throw new Error("Form submission failed");
+        throw new Error("Error al enviar formulario de registro.");
       }
     } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Ocurrió un error desconocido";
+      Swal.fire({
+        title: "Algo salió mal",
+        text: errorMessage,
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
       console.error("Failed to submit form", error);
     }
   };

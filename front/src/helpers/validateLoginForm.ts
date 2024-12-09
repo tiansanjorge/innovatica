@@ -9,6 +9,8 @@ export const validateLoginForm = (user: IUserCredentials) => {
 
   if (!user.email) {
     errors.email = "Campo Obligatorio";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)) {
+    errors.email = "Ingrese un email válido";
   }
   if (!user.password) {
     errors.password = "Campo Obligatorio";

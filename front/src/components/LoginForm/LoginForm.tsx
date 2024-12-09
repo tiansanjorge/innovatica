@@ -4,6 +4,7 @@ import { validateLoginForm } from "@/helpers/validateLoginForm";
 import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
 import { IUserCredentials } from "../../Interfaces/interfaces";
+import Swal from "sweetalert2";
 
 export function LoginForm() {
   const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
@@ -34,9 +35,53 @@ export function LoginForm() {
     });
   };
 
-  const submitLoginForm = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("submit OK");
+    try {
+      const response = await fetch("http://localhost:3001/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userCredentials),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(
+          "Form submitted successfully - Respuesta del servidor:",
+          data
+        );
+        setUserCredentials({
+          email: "",
+          password: "",
+        });
+        setErrors({});
+        setTouched({});
+        Swal.fire({
+          title: "Éxito",
+          text: "Iniciaste sesión",
+          icon: "success",
+          confirmButtonText: "Ir al inicio",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/";
+          }
+        });
+      } else {
+        throw new Error("Error al enviar formulario de inicio de sesión");
+      }
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Ocurrió un error desconocido";
+      Swal.fire({
+        title: "Algo salió mal",
+        text: errorMessage,
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+      console.error("Failed to submit form", error);
+    }
   };
 
   const isFormValid =
@@ -48,7 +93,7 @@ export function LoginForm() {
     <div className="w-full bg-gray-100 p-6 text-center">
       <form
         className="w-1/2 max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg"
-        onSubmit={submitLoginForm}
+        onSubmit={handleSubmit}
       >
         <h1>Iniciar Sesión</h1>
         <div className="mt-1 text-sm text-red-500">
