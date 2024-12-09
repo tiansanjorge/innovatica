@@ -47,11 +47,12 @@ export function LoginForm() {
       });
 
       if (response.ok) {
-        const data = await response.json();
+        const data = (await response.json()) as { token: string };
         console.log(
           "Form submitted successfully - Respuesta del servidor:",
           data
         );
+        localStorage.setItem("token", data.token);
         setUserCredentials({
           email: "",
           password: "",
@@ -59,8 +60,8 @@ export function LoginForm() {
         setErrors({});
         setTouched({});
         Swal.fire({
-          title: "Éxito",
-          text: "Iniciaste sesión",
+          title: "Iniciaste sesión",
+          text: "Bienvenido",
           icon: "success",
           confirmButtonText: "Ir al inicio",
         }).then((result) => {
