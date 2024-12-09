@@ -1,4 +1,4 @@
-export interface IUserData {
+export interface IUserRegisterData {
   name: string;
   address: string;
   phone: number | undefined;

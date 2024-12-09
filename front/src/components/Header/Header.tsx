@@ -138,6 +138,7 @@ export function Header() {
                   className="w-full text-start px-4 py-2 text-gray-800 hover:bg-gray-200"
                   onClick={() => {
                     localStorage.setItem("token", "");
+                    localStorage.setItem("user", "");
                     Swal.fire({
                       title: "Cerraste sesión",
                       text: "Hasta la próxima!",

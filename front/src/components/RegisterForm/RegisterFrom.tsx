@@ -1,6 +1,6 @@
 "use client";
 
-import { IUserData } from "@/Interfaces/interfaces";
+import { IUserRegisterData } from "@/Interfaces/interfaces";
 import { validateRegisterForm } from "@/helpers/validateRegisterForm";
 import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import { FormField } from "./FormField";
 import Swal from "sweetalert2";
 
 export function RegisterForm() {
-  const [newUserData, setNewUserData] = useState<IUserData>({
+  const [newUserData, setNewUserData] = useState<IUserRegisterData>({
     name: "",
     address: "",
     phone: undefined,

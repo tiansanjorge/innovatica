@@ -5,8 +5,33 @@ import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
 import { IUserCredentials } from "../../Interfaces/interfaces";
 import Swal from "sweetalert2";
+import { LoginResponse } from "./interfaces";
 
 export function LoginForm() {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      Swal.fire({
+        title: "Ya iniciaste sesión",
+        text: "Debes cerrar sesión para iniciar sesion en otra cuenta",
+        icon: "warning",
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Cerrar Sesión",
+        cancelButtonText: "Volver a inicio",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          window.location.href = "/login";
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          window.location.href = "/";
+        }
+      });
+    }
+  }, []);
+
   const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
     email: "",
     password: "",
@@ -47,7 +72,7 @@ export function LoginForm() {
       });
 
       if (response.ok) {
-        const data = (await response.json()) as { token: string };
+        const data = (await response.json()) as LoginResponse;
         console.log(
           "Form submitted successfully - Respuesta del servidor:",
           data
@@ -57,6 +82,9 @@ export function LoginForm() {
           email: "",
           password: "",
         });
+
+        localStorage.setItem("user", JSON.stringify(data.user));
+
         setErrors({});
         setTouched({});
         Swal.fire({

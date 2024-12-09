@@ -1,8 +1,10 @@
+import { UserDashboardComponent } from "@/components/userDashboardComponent/userDashboardComponent";
+
 export default function UserDashboard() {
   return (
     <>
       <div>
-        <h1>User Dashboard</h1>
+        <UserDashboardComponent />
       </div>
     </>
   );

@@ -1,10 +1,10 @@
-import { IUserData } from "@/Interfaces/interfaces";
+import { IUserRegisterData } from "@/Interfaces/interfaces";
 
 interface IErrors {
   [key: string]: string;
 }
 
-export const validateRegisterForm = (newUserData: IUserData) => {
+export const validateRegisterForm = (newUserData: IUserRegisterData) => {
   const errors: IErrors = {};
 
   if (!newUserData.name) {
