@@ -2,10 +2,13 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 export function Header() {
+  const router = useRouter();
+
   const [user, setUser] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
@@ -146,7 +149,7 @@ export function Header() {
                       confirmButtonText: "Aceptar",
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        window.location.href = "/";
+                        router.push("/");
                       }
                     });
                   }}

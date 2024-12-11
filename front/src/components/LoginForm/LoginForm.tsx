@@ -6,8 +6,18 @@ import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
 import { IUserCredentials } from "../../Interfaces/interfaces";
 import Swal from "sweetalert2";
 import { loginUser } from "@/services/services";
+import { useRouter } from "next/navigation";
 
 export function LoginForm() {
+  const router = useRouter();
+
+  const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -15,30 +25,22 @@ export function LoginForm() {
         title: "Ya iniciaste sesión",
         text: "Debes cerrar sesión para iniciar sesion en otra cuenta",
         icon: "warning",
-        showCloseButton: true,
         showCancelButton: true,
         confirmButtonText: "Cerrar Sesión",
         cancelButtonText: "Volver a inicio",
         reverseButtons: true,
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
-          window.location.href = "/login";
+          router.push("/login");
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          window.location.href = "/";
+          router.push("/");
         }
       });
     }
   }, []);
-
-  const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
-    email: "",
-    password: "",
-  });
-
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     setErrors(validateLoginForm(userCredentials));
@@ -73,9 +75,10 @@ export function LoginForm() {
         text: "Bienvenido",
         icon: "success",
         confirmButtonText: "Ir al inicio",
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = "/";
+          router.push("/");
         }
       });
     } catch (error) {

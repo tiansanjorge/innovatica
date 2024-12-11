@@ -1,9 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export function CartComponent() {
+  const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -14,7 +16,7 @@ export function CartComponent() {
         confirmButtonText: "Iniciar sesión",
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = "/login";
+          router.push("/login");
         }
       });
     }

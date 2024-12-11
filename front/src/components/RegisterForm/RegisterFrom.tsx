@@ -20,9 +20,32 @@ export function RegisterForm() {
     password: "",
     repeatPassword: "",
   });
-
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      Swal.fire({
+        title: "Ya iniciaste sesión",
+        text: "Debes cerrar sesión para registrar una nueva cuenta",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Cerrar Sesión",
+        cancelButtonText: "Volver a inicio",
+        reverseButtons: true,
+        allowOutsideClick: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          router.push("/register");
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          router.push("/");
+        }
+      });
+    }
+  }, []);
 
   useEffect(() => {
     setErrors(validateRegisterForm(newUserData));
@@ -54,6 +77,7 @@ export function RegisterForm() {
         text: "Te has registrado correctamente.",
         icon: "success",
         confirmButtonText: "Iniciar Sesión",
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           router.push("/login");

@@ -3,8 +3,10 @@
 import Swal from "sweetalert2";
 import { User } from "./interfaces"; // Asegúrate de que la ruta al archivo de interfaces es correcta
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function UserDashboardComponent() {
+  const router = useRouter();
   const [userData, setUserData] = useState<User | null>(null);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ export function UserDashboardComponent() {
         confirmButtonText: "Iniciar sesión",
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = "/login";
+          router.push("/login");
         }
       });
     } else {
