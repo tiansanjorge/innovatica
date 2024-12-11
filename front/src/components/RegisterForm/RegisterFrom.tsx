@@ -6,8 +6,12 @@ import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
 import { FormField } from "./FormField";
 import Swal from "sweetalert2";
+import { RegisterUser } from "@/services/services";
+import { useRouter } from "next/navigation";
 
 export function RegisterForm() {
+  const router = useRouter();
+
   const [newUserData, setNewUserData] = useState<IUserRegisterData>({
     name: "",
     address: "",
@@ -43,43 +47,18 @@ export function RegisterForm() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUserData),
+      const data = await RegisterUser(newUserData);
+      console.log(data);
+      Swal.fire({
+        title: "Exito!",
+        text: "Te has registrado correctamente.",
+        icon: "success",
+        confirmButtonText: "Iniciar Sesión",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/login");
+        }
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(
-          "Form submitted successfully - Respuesta del servidor:",
-          data
-        );
-        setNewUserData({
-          name: "",
-          address: "",
-          phone: undefined,
-          email: "",
-          password: "",
-          repeatPassword: "",
-        });
-        setErrors({});
-        setTouched({});
-        Swal.fire({
-          title: "Exito!",
-          text: "Te has registrado correctamente.",
-          icon: "success",
-          confirmButtonText: "Iniciar Sesión",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = "/login";
-          }
-        });
-      } else {
-        throw new Error("Error al enviar formulario de registro.");
-      }
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Ocurrió un error desconocido";
@@ -89,7 +68,6 @@ export function RegisterForm() {
         icon: "error",
         confirmButtonText: "Aceptar",
       });
-      console.error("Failed to submit form", error);
     }
   };
 

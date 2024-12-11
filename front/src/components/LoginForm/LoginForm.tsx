@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
 import { IUserCredentials } from "../../Interfaces/interfaces";
 import Swal from "sweetalert2";
-import { LoginResponse } from "./interfaces";
+import { loginUser } from "@/services/services";
 
 export function LoginForm() {
   useEffect(() => {
@@ -63,43 +63,21 @@ export function LoginForm() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userCredentials),
+      const data = await loginUser(userCredentials);
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      Swal.fire({
+        title: "Iniciaste sesión",
+        text: "Bienvenido",
+        icon: "success",
+        confirmButtonText: "Ir al inicio",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "/";
+        }
       });
-
-      if (response.ok) {
-        const data = (await response.json()) as LoginResponse;
-        console.log(
-          "Form submitted successfully - Respuesta del servidor:",
-          data
-        );
-        localStorage.setItem("token", data.token);
-        setUserCredentials({
-          email: "",
-          password: "",
-        });
-
-        localStorage.setItem("user", JSON.stringify(data.user));
-
-        setErrors({});
-        setTouched({});
-        Swal.fire({
-          title: "Iniciaste sesión",
-          text: "Bienvenido",
-          icon: "success",
-          confirmButtonText: "Ir al inicio",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = "/";
-          }
-        });
-      } else {
-        throw new Error("Error al enviar formulario de inicio de sesión");
-      }
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Ocurrió un error desconocido";
@@ -109,7 +87,6 @@ export function LoginForm() {
         icon: "error",
         confirmButtonText: "Aceptar",
       });
-      console.error("Failed to submit form", error);
     }
   };
 

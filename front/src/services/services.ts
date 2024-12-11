@@ -1,4 +1,10 @@
-import { IProduct } from "@/Interfaces/interfaces";
+import {
+  ILoginResponse,
+  IProduct,
+  IUserCredentials,
+  IUserData,
+  IUserRegisterData,
+} from "@/Interfaces/interfaces";
 
 const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -36,5 +42,57 @@ export async function getProductById(id: string): Promise<IProduct> {
       throw new Error(error.message);
     }
     throw new Error(String(error));
+  }
+}
+
+export async function loginUser(
+  userCredentials: IUserCredentials
+): Promise<ILoginResponse> {
+  try {
+    const response = await fetch(`${apiURL}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userCredentials),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al enviar formulario de inicio de sesión");
+    }
+
+    const data: ILoginResponse = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("Ocurrió un error desconocido");
+  }
+}
+
+export async function RegisterUser(
+  newUserData: IUserRegisterData
+): Promise<IUserData> {
+  try {
+    const response = await fetch(`${apiURL}/users/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUserData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al enviar formulario de registro.");
+    }
+
+    const data: IUserData = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("Ocurrió un error desconocido");
   }
 }
