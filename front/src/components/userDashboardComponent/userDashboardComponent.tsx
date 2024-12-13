@@ -1,17 +1,16 @@
 "use client";
 
 import Swal from "sweetalert2";
-import { User } from "./interfaces"; // Asegúrate de que la ruta al archivo de interfaces es correcta
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useStore } from "@/store";
 
 export function UserDashboardComponent() {
   const router = useRouter();
-  const [userData, setUserData] = useState<User | null>(null);
+  const { userData } = useStore();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+    if (!userData?.token) {
       Swal.fire({
         title: "Acceso Denegado",
         text: "Debes iniciar sesión para acceder",
@@ -22,32 +21,26 @@ export function UserDashboardComponent() {
           router.push("/login");
         }
       });
-    } else {
-      const userValue = localStorage.getItem("user");
-      const storedUser = userValue ? JSON.parse(userValue) : null;
-      setUserData(storedUser);
     }
   }, []);
-
-  if (!userData) return <p>Cargando datos del usuario...</p>;
 
   return (
     <div>
       <h1>User Dashboard</h1>
-      <p>Nombre: {userData.name}</p>
-      <p>Email: {userData.email}</p>
-      <p>Dirección: {userData.address}</p>
-      <p>Teléfono: {userData.phone}</p>
-      <p>Rol: {userData.role}</p>
-      {userData.credential && (
+      <p>Nombre: {userData?.name}</p>
+      <p>Email: {userData?.email}</p>
+      <p>Dirección: {userData?.address}</p>
+      <p>Teléfono: {userData?.phone}</p>
+      <p>Rol: {userData?.role}</p>
+      {userData?.credential && (
         <>
-          <p>ID de Credencial: {userData.credential.id}</p>
+          <p>ID de Credencial: {userData?.credential.id}</p>
           {/* No mostrar la contraseña */}
         </>
       )}
       <h2>Órdenes:</h2>
-      {userData.orders.length > 0 ? (
-        userData.orders.map((order, index) => (
+      {userData?.orders && userData.orders.length > 0 ? (
+        userData?.orders?.map((order, index) => (
           <div key={index}>
             <p>Orden ID: {order.id}</p>
             <p>Status: {order.status}</p>

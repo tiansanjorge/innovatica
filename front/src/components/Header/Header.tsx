@@ -1,24 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useStore } from "@/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 
 export function Header() {
   const router = useRouter();
+  const { userData, clearUserData } = useStore();
 
-  const [user, setUser] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setUser(token);
-    }
-  }, []);
 
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-gray-100">
@@ -74,11 +68,11 @@ export function Header() {
             </div>
           )}
         </div>
-        {user && <Link href="/orders">Compras</Link>}
+        {userData?.token && <Link href="/orders">Compras</Link>}
       </div>
 
       {/* Favoritos y Carrito */}
-      {user ? (
+      {userData?.token ? (
         <>
           <div className="flex items-center gap-10">
             <Link href="/favorites">
@@ -140,8 +134,8 @@ export function Header() {
                 <button
                   className="w-full text-start px-4 py-2 text-gray-800 hover:bg-gray-200"
                   onClick={() => {
-                    localStorage.setItem("token", "");
-                    localStorage.setItem("user", "");
+                    clearUserData();
+                    setIsOpen2(false);
                     Swal.fire({
                       title: "Cerraste sesión",
                       text: "Hasta la próxima!",

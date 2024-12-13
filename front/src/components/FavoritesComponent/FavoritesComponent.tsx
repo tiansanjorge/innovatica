@@ -1,14 +1,15 @@
 "use client";
 
+import { useStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export function FavoritesComponent() {
   const router = useRouter();
+  const { userData } = useStore();
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+    if (!userData?.token) {
       Swal.fire({
         title: "",
         text: "Debes iniciar sesión para acceder",

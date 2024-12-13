@@ -7,9 +7,11 @@ import { IUserCredentials } from "../../Interfaces/interfaces";
 import Swal from "sweetalert2";
 import { loginUser } from "@/services/services";
 import { useRouter } from "next/navigation";
+import { useStore } from "@/store";
 
 export function LoginForm() {
   const router = useRouter();
+  const { userData, setUserData, clearUserData } = useStore();
 
   const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
     email: "",
@@ -17,10 +19,10 @@ export function LoginForm() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [submit, setSubmit] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (!submit && userData?.token) {
       Swal.fire({
         title: "Ya iniciaste sesión",
         text: "Debes cerrar sesión para iniciar sesion en otra cuenta",
@@ -32,15 +34,14 @@ export function LoginForm() {
         allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
+          clearUserData();
           router.push("/login");
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           router.push("/");
         }
       });
     }
-  }, []);
+  }, [userData?.token]);
 
   useEffect(() => {
     setErrors(validateLoginForm(userCredentials));
@@ -66,9 +67,8 @@ export function LoginForm() {
     event.preventDefault();
     try {
       const data = await loginUser(userCredentials);
-
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      setUserData({ ...data.user, token: data.token });
+      setSubmit(true);
 
       Swal.fire({
         title: "Iniciaste sesión",

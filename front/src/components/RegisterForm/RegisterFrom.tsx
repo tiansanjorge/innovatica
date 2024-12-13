@@ -8,9 +8,11 @@ import { FormField } from "./FormField";
 import Swal from "sweetalert2";
 import { RegisterUser } from "@/services/services";
 import { useRouter } from "next/navigation";
+import { useStore } from "@/store";
 
 export function RegisterForm() {
   const router = useRouter();
+  const { userData, clearUserData } = useStore();
 
   const [newUserData, setNewUserData] = useState<IUserRegisterData>({
     name: "",
@@ -24,8 +26,7 @@ export function RegisterForm() {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (userData?.token) {
       Swal.fire({
         title: "Ya iniciaste sesión",
         text: "Debes cerrar sesión para registrar una nueva cuenta",
@@ -37,8 +38,7 @@ export function RegisterForm() {
         allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
+          clearUserData();
           router.push("/register");
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           router.push("/");
