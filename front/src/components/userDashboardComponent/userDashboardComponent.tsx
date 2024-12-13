@@ -53,7 +53,6 @@ export function UserDashboardComponent() {
                 <p>Precio: {product.price}</p>
                 <p>Stock: {product.stock}</p>
                 <p>Imagen: {product.image}</p>
-                <p>Categoría: {product.category.name}</p>
               </div>
             ))}
           </div>

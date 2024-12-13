@@ -28,8 +28,6 @@ export async function getProducts(): Promise<IProduct[]> {
 export async function getProductById(id: string): Promise<IProduct> {
   try {
     const products = await getProducts();
-    console.log(products);
-    console.log(id);
     const product = products.find((product) => product.id.toString() === id);
     if (!product) {
       throw new Error("Product not found.");

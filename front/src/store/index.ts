@@ -1,55 +1,76 @@
 import { create } from "zustand";
-import { CartState, ICartItem, IUserStored, UserState } from "./interfaces";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import { ICartState, IUserStored, IUserState } from "./interfaces";
+import Swal from "sweetalert2";
+import { IProduct } from "@/Interfaces/interfaces";
 
 // USER
 
-const savedUserData = localStorage.getItem("user");
-const token = localStorage.getItem("token");
-const initialState =
-  savedUserData && token ? { ...JSON.parse(savedUserData), token } : null;
+export const useUserStore = create<IUserState>()(
+  devtools(
+    persist(
+      (set) => ({
+        userData: null,
 
-export const useUserStore = create<UserState>((set) => ({
-  userData: initialState,
-  setUserData: (newData: IUserStored) => {
-    set({ userData: newData });
-    localStorage.setItem("token", newData.token);
-    localStorage.setItem("user", JSON.stringify(newData));
-  },
-  clearUserData: () => {
-    set({ userData: null });
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  },
-}));
+        setUserData: (newData: IUserStored) => {
+          set({ userData: newData });
+        },
+        clearUserData: () => {
+          set({ userData: null });
+        },
+      }),
+      {
+        name: "user-data",
+        storage: createJSONStorage(() => localStorage),
+      }
+    )
+  )
+);
 
 // CART
 
-const getSavedCart = () => {
-  const savedCart = localStorage.getItem("cart");
-  return savedCart ? JSON.parse(savedCart) : [];
-};
+export const useCartStore = create<ICartState>()(
+  devtools(
+    persist(
+      (set) => ({
+        cart: [],
 
-export const useCartStore = create<CartState>((set) => ({
-  cart: getSavedCart(),
+        addToCart: (product: IProduct) =>
+          set((state) => {
+            const existingItem = state.cart.find((i) => i.id === product.id);
+            if (existingItem) {
+              Swal.fire({
+                icon: "warning",
+                title: "Producto ya en el carrito",
+                text: "Este producto ya está en tu carrito. No puedes agregarlo nuevamente.",
+                confirmButtonText: "Entendido",
+              });
+              console.log(state.cart);
+              return { cart: state.cart };
+            } else {
+              const newCart = [...state.cart, product];
+              console.log(newCart);
+              return { cart: newCart };
+            }
+          }),
 
-  addToCart: (item: ICartItem) =>
-    set((state) => {
-      const newCart = [...state.cart, item];
-      localStorage.setItem("cart", JSON.stringify(newCart));
-      return { cart: newCart };
-    }),
-  removeFromCart: (productId: number) =>
-    set((state) => {
-      const updatedCart = state.cart.filter(
-        (item) => item.productId !== productId
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return { cart: updatedCart };
-    }),
+        removeFromCart: (productId: number) =>
+          set((state) => {
+            const updatedCart = state.cart.filter(
+              (product) => product.id !== productId
+            );
+            console.log(updatedCart);
+            return { cart: updatedCart };
+          }),
 
-  clearCart: () =>
-    set(() => {
-      localStorage.removeItem("cart");
-      return { cart: [] };
-    }),
-}));
+        clearCart: () => {
+          set(() => ({ cart: [] }));
+        },
+      }),
+      {
+        name: "cart-data",
+        storage: createJSONStorage(() => localStorage),
+      }
+    )
+  )
+);

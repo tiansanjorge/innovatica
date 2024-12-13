@@ -1,26 +1,11 @@
-export interface Category {
-  id: number;
-  name: string;
-  products: Product[];
-}
+import { IProduct } from "@/Interfaces/interfaces";
 
-export interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  stock: number;
-  image: string;
-  categoryId: number;
-  category: Category;
-}
-
-export interface Order {
+export interface IOrder {
   id: number;
   status: string;
   date: Date;
   userId: number;
-  products: Product[];
+  products: IProduct[];
 }
 
 export interface IUserStored {
@@ -34,22 +19,18 @@ export interface IUserStored {
   credential?: {
     id: number;
   };
-  orders?: Order[];
+  orders?: IOrder[];
 }
 
-export interface UserState {
+export interface IUserState {
   userData: IUserStored | null;
   setUserData: (newData: IUserStored) => void;
   clearUserData: () => void;
 }
 
-export interface ICartItem {
-  productId: number;
-}
-
-export interface CartState {
-  cart: ICartItem[];
-  addToCart: (item: ICartItem) => void;
+export interface ICartState {
+  cart: IProduct[];
+  addToCart: (item: IProduct) => void;
   removeFromCart: (productId: number) => void;
   clearCart: () => void;
 }

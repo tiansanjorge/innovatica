@@ -7,7 +7,6 @@ export interface IProduct {
   image: string;
   categoryId: number;
 }
-
 export interface IUserCredentials {
   email: string;
   password: string;

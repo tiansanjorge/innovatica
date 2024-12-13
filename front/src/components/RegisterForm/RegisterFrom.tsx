@@ -45,7 +45,7 @@ export function RegisterForm() {
         }
       });
     }
-  }, []);
+  }, [userData?.token]);
 
   useEffect(() => {
     setErrors(validateRegisterForm(newUserData));
