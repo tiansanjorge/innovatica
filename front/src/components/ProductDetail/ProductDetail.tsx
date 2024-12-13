@@ -11,6 +11,7 @@ export async function ProductDetail({ id }: { id: string }) {
         <img src={image} alt=""></img>
         <h1>{name}</h1>
         <p>${price}</p>
+        <button className="bg-green-400">Agregar al Carrito</button>
       </div>
     </>
   );

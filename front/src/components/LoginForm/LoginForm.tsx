@@ -3,15 +3,15 @@
 import { validateLoginForm } from "@/helpers/validateLoginForm";
 import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
-import { IUserCredentials } from "../../Interfaces/interfaces";
 import Swal from "sweetalert2";
 import { loginUser } from "@/services/services";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/store";
+import { useUserStore } from "@/store";
+import { IUserCredentials } from "@/Interfaces/interfaces";
 
 export function LoginForm() {
   const router = useRouter();
-  const { userData, setUserData, clearUserData } = useStore();
+  const { userData, setUserData, clearUserData } = useUserStore();
 
   const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
     email: "",

@@ -1,13 +1,13 @@
 "use client";
 
-import { useStore } from "@/store";
+import { useUserStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export function OrdersComponent() {
   const router = useRouter();
-  const { userData } = useStore();
+  const { userData } = useUserStore();
   useEffect(() => {
     if (!userData?.token) {
       Swal.fire({

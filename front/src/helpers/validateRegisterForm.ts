@@ -1,4 +1,4 @@
-import { IUserRegisterData } from "@/Interfaces/interfaces";
+import { IUserRegisterData } from "@/services/interfaces";
 
 interface IErrors {
   [key: string]: string;

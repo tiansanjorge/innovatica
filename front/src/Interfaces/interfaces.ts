@@ -1,17 +1,3 @@
-export interface IUserRegisterData {
-  name: string;
-  address: string;
-  phone: number | undefined;
-  email: string;
-  password: string;
-  repeatPassword: string;
-}
-
-export interface IUserCredentials {
-  email: string;
-  password: string;
-}
-
 export interface IProduct {
   id: number;
   name: string;
@@ -22,16 +8,7 @@ export interface IProduct {
   categoryId: number;
 }
 
-export interface IUserData {
-  id: number;
-  name: string;
+export interface IUserCredentials {
   email: string;
-  address: string;
-  phone: string;
-}
-
-export interface ILoginResponse {
-  login: boolean;
-  token: string;
-  user: IUserData;
+  password: string;
 }

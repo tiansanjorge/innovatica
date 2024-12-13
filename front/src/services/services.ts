@@ -1,10 +1,9 @@
+import { IProduct, IUserCredentials } from "@/Interfaces/interfaces";
 import {
   ILoginResponse,
-  IProduct,
-  IUserCredentials,
   IUserData,
   IUserRegisterData,
-} from "@/Interfaces/interfaces";
+} from "@/services/interfaces";
 
 const apiURL = process.env.NEXT_PUBLIC_API_URL;
 

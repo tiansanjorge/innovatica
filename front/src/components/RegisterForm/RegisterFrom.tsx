@@ -1,6 +1,6 @@
 "use client";
 
-import { IUserRegisterData } from "@/Interfaces/interfaces";
+import { IUserRegisterData } from "@/services/interfaces";
 import { validateRegisterForm } from "@/helpers/validateRegisterForm";
 import Link from "next/link";
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
@@ -8,11 +8,11 @@ import { FormField } from "./FormField";
 import Swal from "sweetalert2";
 import { RegisterUser } from "@/services/services";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/store";
+import { useUserStore } from "@/store";
 
 export function RegisterForm() {
   const router = useRouter();
-  const { userData, clearUserData } = useStore();
+  const { userData, clearUserData } = useUserStore();
 
   const [newUserData, setNewUserData] = useState<IUserRegisterData>({
     name: "",

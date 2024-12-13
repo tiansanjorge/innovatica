@@ -3,11 +3,11 @@
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/store";
+import { useUserStore } from "@/store";
 
 export function UserDashboardComponent() {
   const router = useRouter();
-  const { userData } = useStore();
+  const { userData } = useUserStore();
 
   useEffect(() => {
     if (!userData?.token) {
@@ -35,7 +35,6 @@ export function UserDashboardComponent() {
       {userData?.credential && (
         <>
           <p>ID de Credencial: {userData?.credential.id}</p>
-          {/* No mostrar la contraseña */}
         </>
       )}
       <h2>Órdenes:</h2>

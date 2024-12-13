@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useStore } from "@/store";
+import { useUserStore } from "@/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 export function Header() {
   const router = useRouter();
-  const { userData, clearUserData } = useStore();
+  const { userData, clearUserData } = useUserStore();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);

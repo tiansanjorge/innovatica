@@ -1,9 +1,7 @@
-// interfaces.ts
-
 export interface Category {
   id: number;
   name: string;
-  products: Product[]; // Referencia circular opcional, puedes omitirla si no la necesitas en el frontend
+  products: Product[];
 }
 
 export interface Product {
@@ -23,4 +21,35 @@ export interface Order {
   date: Date;
   userId: number;
   products: Product[];
+}
+
+export interface IUserStored {
+  token: string;
+  id: number;
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+  role?: string;
+  credential?: {
+    id: number;
+  };
+  orders?: Order[];
+}
+
+export interface UserState {
+  userData: IUserStored | null;
+  setUserData: (newData: IUserStored) => void;
+  clearUserData: () => void;
+}
+
+export interface ICartItem {
+  productId: number;
+}
+
+export interface CartState {
+  cart: ICartItem[];
+  addToCart: (item: ICartItem) => void;
+  removeFromCart: (productId: number) => void;
+  clearCart: () => void;
 }
