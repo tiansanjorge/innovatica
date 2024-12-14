@@ -41,6 +41,7 @@ export function ProductDetail({ id }: { id: string }) {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

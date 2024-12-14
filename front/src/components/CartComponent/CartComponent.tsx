@@ -25,7 +25,10 @@ export function CartComponent() {
         }
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData?.token]);
+
+  
 
   return (
     <>
@@ -48,8 +51,8 @@ export function CartComponent() {
         </div>
       ) : (
         <>
-        <div>Tu carrito esta vacío</div>
-        <Link href="/">Ir al Catálogo</Link>
+          <div>Tu carrito esta vacío</div>
+          <Link href="/">Ir al Catálogo</Link>
         </>
       )}
     </>

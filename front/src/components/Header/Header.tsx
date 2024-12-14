@@ -4,27 +4,58 @@
 import { useUserStore } from "@/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 
 export function Header() {
   const router = useRouter();
+  const menu1Ref = useRef<HTMLDivElement>(null);
+  const menu2Ref = useRef<HTMLDivElement>(null);
+
   const { userData, clearUserData } = useUserStore();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        menu1Ref.current &&
+        !menu1Ref.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+      if (
+        menu2Ref.current &&
+        !menu2Ref.current.contains(event.target as Node)
+      ) {
+        setIsOpen2(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleCloseMenu1 = () => {
+    setIsOpen(false);
+  };
+
+  const handleCloseMenu2 = () => {
+    setIsOpen2(false);
+  };
+
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-gray-100">
-      {/* Logo */}
       <div className="mr-10">
         <img className="w-64" src="/images/logo.png" alt="Logo" />
       </div>
 
-      {/* Navegación principal */}
       <div className="flex items-center gap-10">
         <Link href="/">Home</Link>
-        <div className="relative inline-block text-left">
+        <div className="relative inline-block text-left" ref={menu1Ref}>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="pl-4 pr-3 py-2 bg-customGreen text-white rounded-2xl flex"
@@ -50,18 +81,21 @@ export function Header() {
               <Link
                 href="/recomended"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                onClick={handleCloseMenu1}
               >
                 Recomendados
               </Link>
               <Link
                 href="/cellphones"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                onClick={handleCloseMenu1}
               >
                 Celulares
               </Link>
               <Link
                 href="/televisions"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                onClick={handleCloseMenu1}
               >
                 Televisores
               </Link>
@@ -71,7 +105,6 @@ export function Header() {
         {userData?.token && <Link href="/orders">Compras</Link>}
       </div>
 
-      {/* Favoritos y Carrito */}
       {userData?.token ? (
         <>
           <div className="flex items-center gap-10">
@@ -103,8 +136,7 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Menú del usuario */}
-          <div className="relative inline-block text-left">
+          <div className="relative inline-block text-left" ref={menu2Ref}>
             <button
               onClick={() => setIsOpen2(!isOpen2)}
               className="px-4 py-2 bg-blue-500 text-white rounded-full"
@@ -116,24 +148,28 @@ export function Header() {
                 <Link
                   href="/user-dashboard"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  onClick={handleCloseMenu2}
                 >
                   Perfil
                 </Link>
                 <Link
                   href="/orders"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  onClick={handleCloseMenu2}
                 >
                   Compras
                 </Link>
                 <Link
                   href="/help"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  onClick={handleCloseMenu2}
                 >
                   Ayuda
                 </Link>
                 <button
                   className="w-full text-start px-4 py-2 text-gray-800 hover:bg-gray-200"
                   onClick={() => {
+                    handleCloseMenu2();
                     clearUserData();
                     setIsOpen2(false);
                     Swal.fire({
