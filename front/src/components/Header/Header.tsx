@@ -102,7 +102,7 @@ export function Header() {
             </div>
           )}
         </div>
-        {userData?.token && <Link href="/orders">Compras</Link>}
+        {userData?.token && <Link href="/orders">Mis Compras</Link>}
       </div>
 
       {userData?.token ? (
@@ -157,7 +157,7 @@ export function Header() {
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
                   onClick={handleCloseMenu2}
                 >
-                  Compras
+                  Mis Compras
                 </Link>
                 <Link
                   href="/help"

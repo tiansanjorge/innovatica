@@ -7,8 +7,11 @@ import Swal from "sweetalert2";
 
 export function FavoritesComponent() {
   const router = useRouter();
-  const { userData } = useUserStore();
+  const { userData, isUserLoaded } = useUserStore();
   useEffect(() => {
+    if (!isUserLoaded) {
+      return;
+    }
     if (!userData?.token) {
       Swal.fire({
         title: "",
@@ -22,7 +25,7 @@ export function FavoritesComponent() {
         }
       });
     }
-  }, []);
+  }, [userData?.token]);
 
   return <div>Favorites</div>;
 }

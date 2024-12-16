@@ -7,9 +7,12 @@ import { useUserStore } from "@/store";
 
 export function UserDashboardComponent() {
   const router = useRouter();
-  const { userData } = useUserStore();
+  const { userData, isUserLoaded } = useUserStore();
 
   useEffect(() => {
+    if (!isUserLoaded) {
+      return;
+    }
     if (!userData?.token) {
       Swal.fire({
         title: "Acceso Denegado",
@@ -22,7 +25,7 @@ export function UserDashboardComponent() {
         }
       });
     }
-  }, []);
+  }, [userData?.token]);
 
   return (
     <div>

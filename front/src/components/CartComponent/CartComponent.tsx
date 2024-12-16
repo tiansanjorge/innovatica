@@ -9,9 +9,12 @@ import Swal from "sweetalert2";
 
 export function CartComponent() {
   const router = useRouter();
-  const { userData } = useUserStore();
+  const { userData, isUserLoaded } = useUserStore();
   const { cart, removeFromCart, clearCart } = useCartStore();
   useEffect(() => {
+    if (!isUserLoaded) {
+      return;
+    }
     if (!userData?.token) {
       Swal.fire({
         title: "",
@@ -27,8 +30,6 @@ export function CartComponent() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData?.token]);
-
-  
 
   return (
     <>

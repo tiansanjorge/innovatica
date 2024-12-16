@@ -7,8 +7,11 @@ import Swal from "sweetalert2";
 
 export function OrdersComponent() {
   const router = useRouter();
-  const { userData } = useUserStore();
+  const { userData, isUserLoaded } = useUserStore();
   useEffect(() => {
+    if (!isUserLoaded) {
+      return;
+    }
     if (!userData?.token) {
       Swal.fire({
         title: "",
@@ -22,7 +25,7 @@ export function OrdersComponent() {
         }
       });
     }
-  }, []);
+  }, [userData?.token]);
 
   return <div>Orders</div>;
 }
