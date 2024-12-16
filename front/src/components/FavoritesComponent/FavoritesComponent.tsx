@@ -7,13 +7,13 @@ import Swal from "sweetalert2";
 
 export function FavoritesComponent() {
   const router = useRouter();
-  const { userData, isUserLoaded } = useUserStore();
+  const { userData } = useUserStore();
   useEffect(() => {
-    if (isUserLoaded) {
+    const timeoutId = setTimeout(() => {
       if (!userData?.token) {
         Swal.fire({
           title: "",
-          text: "Debes iniciar sesión para acceder al carrito de compras.",
+          text: "Debes iniciar sesión para acceder a tus favoritos.",
           icon: "warning",
           confirmButtonText: "Iniciar sesión",
           allowOutsideClick: false,
@@ -23,8 +23,12 @@ export function FavoritesComponent() {
           }
         });
       }
-    }
-  }, [userData?.token, isUserLoaded]);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [userData?.token]);
 
   return <div>Favorites</div>;
 }

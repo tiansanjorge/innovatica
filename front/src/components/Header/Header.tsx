@@ -170,16 +170,20 @@ export function Header() {
                   className="w-full text-start px-4 py-2 text-gray-800 hover:bg-gray-200"
                   onClick={() => {
                     handleCloseMenu2();
-                    clearUserData();
-                    setIsOpen2(false);
+
                     Swal.fire({
-                      title: "Cerraste sesión",
-                      text: "Hasta la próxima!",
-                      icon: "success",
-                      confirmButtonText: "Aceptar",
+                      title: "",
+                      text: "Estas seguro que quieres cerrar sesión?",
+                      icon: "question",
+                      showCancelButton: true,
+                      showCloseButton: true,
+                      confirmButtonText: "Cerrar Sesión",
+                      cancelButtonText: "Permanecer",
+                      reverseButtons: true,
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        router.push("/");
+                        router.push("/login");
+                        clearUserData();
                       }
                     });
                   }}

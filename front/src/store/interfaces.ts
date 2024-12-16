@@ -24,7 +24,6 @@ export interface IUserStored {
 
 export interface IUserState {
   userData: IUserStored | null;
-  isUserLoaded: boolean;
   setUserData: (newData: IUserStored) => void;
   clearUserData: () => void;
 }

@@ -11,24 +11,18 @@ export const useUserStore = create<IUserState>()(
     persist(
       (set) => ({
         userData: null,
-        isUserLoaded: false,
 
         setUserData: (newData: IUserStored) => {
-          set({ userData: newData, isUserLoaded: true });
+          set({ userData: newData });
         },
 
         clearUserData: () => {
-          set({ userData: null, isUserLoaded: true });
+          set({ userData: null });
         },
       }),
       {
         name: "user-data",
         storage: createJSONStorage(() => localStorage),
-        onRehydrateStorage: () => (_, error) => {
-          if (error) {
-            console.error("Failed to rehydrate:", error);
-          }
-        },
       }
     )
   )

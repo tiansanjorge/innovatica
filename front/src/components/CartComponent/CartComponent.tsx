@@ -9,10 +9,10 @@ import Swal from "sweetalert2";
 
 export function CartComponent() {
   const router = useRouter();
-  const { userData, isUserLoaded } = useUserStore();
+  const { userData } = useUserStore();
   const { cart, removeFromCart, clearCart } = useCartStore();
   useEffect(() => {
-    if (isUserLoaded) {
+    const timeoutId = setTimeout(() => {
       if (!userData?.token) {
         Swal.fire({
           title: "",
@@ -26,9 +26,12 @@ export function CartComponent() {
           }
         });
       }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userData?.token, isUserLoaded]);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [userData?.token]);
 
   return (
     <>
