@@ -12,24 +12,23 @@ export function CartComponent() {
   const { userData, isUserLoaded } = useUserStore();
   const { cart, removeFromCart, clearCart } = useCartStore();
   useEffect(() => {
-    if (!isUserLoaded) {
-      return;
-    }
-    if (!userData?.token) {
-      Swal.fire({
-        title: "",
-        text: "Debes iniciar sesión para acceder",
-        icon: "warning",
-        confirmButtonText: "Iniciar sesión",
-        allowOutsideClick: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          router.push("/login");
-        }
-      });
+    if (isUserLoaded) {
+      if (!userData?.token) {
+        Swal.fire({
+          title: "",
+          text: "Debes iniciar sesión para acceder al carrito de compras.",
+          icon: "warning",
+          confirmButtonText: "Iniciar sesión",
+          allowOutsideClick: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            router.push("/login");
+          }
+        });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userData?.token]);
+  }, [userData?.token, isUserLoaded]);
 
   return (
     <>

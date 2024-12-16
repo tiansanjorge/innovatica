@@ -9,23 +9,22 @@ export function FavoritesComponent() {
   const router = useRouter();
   const { userData, isUserLoaded } = useUserStore();
   useEffect(() => {
-    if (!isUserLoaded) {
-      return;
+    if (isUserLoaded) {
+      if (!userData?.token) {
+        Swal.fire({
+          title: "",
+          text: "Debes iniciar sesión para acceder al carrito de compras.",
+          icon: "warning",
+          confirmButtonText: "Iniciar sesión",
+          allowOutsideClick: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            router.push("/login");
+          }
+        });
+      }
     }
-    if (!userData?.token) {
-      Swal.fire({
-        title: "",
-        text: "Debes iniciar sesión para acceder",
-        icon: "warning",
-        confirmButtonText: "Iniciar sesión",
-        allowOutsideClick: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          router.push("/login");
-        }
-      });
-    }
-  }, [userData?.token]);
+  }, [userData?.token, isUserLoaded]);
 
   return <div>Favorites</div>;
 }
