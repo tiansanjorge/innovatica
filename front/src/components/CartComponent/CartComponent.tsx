@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { IProduct } from "@/Interfaces/interfaces";
+import { createOrderService } from "@/services/services";
 import { useCartStore, useUserStore } from "@/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -33,6 +35,55 @@ export function CartComponent() {
     };
   }, [userData?.token]);
 
+  const finishPurchase = async () => {
+    // setIsLoading(true);
+    if (!userData) {
+      Swal.fire({
+        title: "Error",
+        text: "Usuario no autenticado o ID del usuario no definido.",
+        icon: "warning",
+        showCloseButton: true,
+        confirmButtonText: "Volver",
+        allowOutsideClick: true,
+      });
+      return;
+    }
+
+    const idProducts = cart.map((product: IProduct) => product.id);
+    const res = await createOrderService(
+      idProducts,
+      userData.id,
+      userData.token
+    );
+
+    if (res) {
+      console.log(res);
+      // setIsLoading(false);
+      clearCart();
+      Swal.fire({
+        title: "Listo!",
+        text: "Compra realizada con éxito",
+        icon: "success",
+        showCloseButton: true,
+        confirmButtonText: "Ver compras",
+        allowOutsideClick: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/orders");
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo realizar la compra, intente nuevamente mas tarde.",
+        icon: "warning",
+        showCloseButton: true,
+        confirmButtonText: "Volver",
+        allowOutsideClick: true,
+      });
+    }
+  };
+
   return (
     <>
       {cart.length > 0 ? (
@@ -50,7 +101,10 @@ export function CartComponent() {
               </button>
             </div>
           ))}
-          <button onClick={() => clearCart()}>Vaciar Carrito</button>
+          <button onClick={clearCart}>Vaciar Carrito</button>
+          <div>
+            <button onClick={finishPurchase}>Finalizar Compra</button>
+          </div>
         </div>
       ) : (
         <>

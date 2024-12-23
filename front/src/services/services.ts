@@ -7,6 +7,8 @@ import {
 
 const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
+// PRODUCT SERVICES
+
 export async function getProducts(): Promise<IProduct[]> {
   try {
     const res = await fetch(`${apiURL}/products`, {
@@ -41,6 +43,8 @@ export async function getProductById(id: string): Promise<IProduct> {
     throw new Error(String(error));
   }
 }
+
+// USER SERVICES
 
 export async function loginUser(
   userCredentials: IUserCredentials
@@ -91,5 +95,52 @@ export async function RegisterUser(
       throw new Error(error.message);
     }
     throw new Error("Ocurrió un error desconocido");
+  }
+}
+
+// ORDERS SERVICES
+
+export async function createOrderService(
+  products: number[],
+  userId: number,
+  token: string
+) {
+  try {
+    const res = await fetch(`${apiURL}/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ products, userId }),
+    });
+
+    if (res.ok) {
+      return res.json();
+    } else {
+      return null;
+    }
+  } catch (error) {
+    throw new Error(error as string);
+  }
+}
+
+export async function getOrdersService(token: string) {
+  try {
+    const res = await fetch(`${apiURL}/users/orders`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error("Failed to register");
+    }
+  } catch (error) {
+    throw new Error(error as string);
   }
 }

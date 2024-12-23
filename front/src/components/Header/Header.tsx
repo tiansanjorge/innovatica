@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useUserStore } from "@/store";
+import { useCartStore, useUserStore } from "@/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -13,6 +13,7 @@ export function Header() {
   const menu2Ref = useRef<HTMLDivElement>(null);
 
   const { userData, clearUserData } = useUserStore();
+  const { clearCart } = useCartStore();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
@@ -172,8 +173,8 @@ export function Header() {
                     handleCloseMenu2();
 
                     Swal.fire({
-                      title: "",
-                      text: "Estas seguro que quieres cerrar sesión?",
+                      title: "Estas seguro que quieres salir?",
+                      text: "Tu carrito de compras se perderá.",
                       icon: "question",
                       showCancelButton: true,
                       showCloseButton: true,
@@ -184,6 +185,7 @@ export function Header() {
                       if (result.isConfirmed) {
                         router.push("/login");
                         clearUserData();
+                        clearCart();
                       }
                     });
                   }}
