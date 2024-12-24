@@ -9,23 +9,22 @@ import Swal from "sweetalert2";
 
 export function Header() {
   const router = useRouter();
-  const menu1Ref = useRef<HTMLDivElement>(null);
+  // const menu1Ref = useRef<HTMLDivElement>(null);
   const menu2Ref = useRef<HTMLDivElement>(null);
 
   const { userData, clearUserData } = useUserStore();
   const { clearCart } = useCartStore();
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        menu1Ref.current &&
-        !menu1Ref.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
+      // if (
+      //   menu1Ref.current && !menu1Ref.current.contains(event.target as Node)
+      // ) {
+      //   setIsOpen(false);
+      // }
       if (
         menu2Ref.current &&
         !menu2Ref.current.contains(event.target as Node)
@@ -40,9 +39,9 @@ export function Header() {
     };
   }, []);
 
-  const handleCloseMenu1 = () => {
-    setIsOpen(false);
-  };
+  // const handleCloseMenu1 = () => {
+  //   setIsOpen(false);
+  // };
 
   const handleCloseMenu2 = () => {
     setIsOpen2(false);
@@ -56,7 +55,7 @@ export function Header() {
 
       <div className="flex items-center gap-10">
         <Link href="/">Home</Link>
-        <div className="relative inline-block text-left" ref={menu1Ref}>
+        {/* <div className="relative inline-block text-left" ref={menu1Ref}>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="pl-4 pr-3 py-2 bg-customGreen text-white rounded-2xl flex"
@@ -102,8 +101,9 @@ export function Header() {
               </Link>
             </div>
           )}
-        </div>
+        </div> */}
         {userData?.token && <Link href="/orders">Mis Compras</Link>}
+        <Link href="/help">Ayuda</Link>
       </div>
 
       {userData?.token ? (
@@ -160,13 +160,7 @@ export function Header() {
                 >
                   Mis Compras
                 </Link>
-                <Link
-                  href="/help"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                  onClick={handleCloseMenu2}
-                >
-                  Ayuda
-                </Link>
+
                 <button
                   className="w-full text-start px-4 py-2 text-gray-800 hover:bg-gray-200"
                   onClick={() => {

@@ -34,3 +34,9 @@ export interface ICartState {
   removeFromCart: (productId: number) => void;
   clearCart: () => void;
 }
+
+export interface IFavState {
+  fav: IProduct[];
+  setFav: (item: IProduct) => void;
+  clearFav: () => void;
+}
