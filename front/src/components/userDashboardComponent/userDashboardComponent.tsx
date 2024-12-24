@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store";
+import Link from "next/link";
 
 export function UserDashboardComponent() {
   const router = useRouter();
@@ -44,29 +45,7 @@ export function UserDashboardComponent() {
           <p>ID de Credencial: {userData?.credential.id}</p>
         </>
       )}
-      <h2>Órdenes:</h2>
-      {userData?.orders && userData.orders.length > 0 ? (
-        userData?.orders?.map((order, index) => (
-          <div key={index}>
-            <p>Orden ID: {order.id}</p>
-            <p>Status: {order.status}</p>
-            <p>Fecha: {order.date.toLocaleString()}</p>
-            <h3>Productos de esta orden:</h3>
-            {order.products.map((product, pIndex) => (
-              <div key={pIndex}>
-                <p>Producto ID: {product.id}</p>
-                <p>Nombre: {product.name}</p>
-                <p>Descripción: {product.description}</p>
-                <p>Precio: {product.price}</p>
-                <p>Stock: {product.stock}</p>
-                <p>Imagen: {product.image}</p>
-              </div>
-            ))}
-          </div>
-        ))
-      ) : (
-        <p>No hay órdenes para mostrar.</p>
-      )}
+      <Link href="/orders">Mis Compras</Link>
     </div>
   );
 }

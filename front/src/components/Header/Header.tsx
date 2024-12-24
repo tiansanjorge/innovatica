@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useCartStore, useUserStore } from "@/store";
+import { useCartStore, useFavStore, useUserStore } from "@/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -14,6 +14,7 @@ export function Header() {
 
   const { userData, clearUserData } = useUserStore();
   const { clearCart } = useCartStore();
+  const { clearFav } = useFavStore();
 
   // const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
@@ -168,7 +169,7 @@ export function Header() {
 
                     Swal.fire({
                       title: "Estas seguro que quieres salir?",
-                      text: "Tu carrito de compras se perderá.",
+                      text: "Tu carrito de compras y tu lista de favoritos se perderán.",
                       icon: "question",
                       showCancelButton: true,
                       showCloseButton: true,
@@ -180,6 +181,7 @@ export function Header() {
                         router.push("/login");
                         clearUserData();
                         clearCart();
+                        clearFav();
                       }
                     });
                   }}
