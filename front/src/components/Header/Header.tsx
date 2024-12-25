@@ -3,34 +3,35 @@
 
 import { useCartStore, useFavStore, useUserStore } from "@/store";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 
 export function Header() {
   const router = useRouter();
-  // const menu1Ref = useRef<HTMLDivElement>(null);
-  const menu2Ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const { userData, clearUserData } = useUserStore();
   const { clearCart } = useCartStore();
   const { clearFav } = useFavStore();
 
-  // const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isOpen2, setIsOpen2] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const shortenUsername = (username: string) => {
+    if (username.length > 10) {
+      return username.substring(0, 7) + "...";
+    } else {
+      return username;
+    }
+  };
+
+  const avatarName = userData ? shortenUsername(userData.name) : undefined;
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      // if (
-      //   menu1Ref.current && !menu1Ref.current.contains(event.target as Node)
-      // ) {
-      //   setIsOpen(false);
-      // }
-      if (
-        menu2Ref.current &&
-        !menu2Ref.current.contains(event.target as Node)
-      ) {
-        setIsOpen2(false);
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
       }
     }
 
@@ -40,94 +41,70 @@ export function Header() {
     };
   }, []);
 
-  // const handleCloseMenu1 = () => {
-  //   setIsOpen(false);
-  // };
-
   const handleCloseMenu2 = () => {
-    setIsOpen2(false);
+    setIsOpen(false);
+    console.log({ userData });
   };
 
   return (
-    <div className="flex items-center justify-between px-4 py-2 bg-gray-100">
-      <div className="mr-10">
+    <div className="flex items-center justify-evenly text-lg py-2 ">
+      <div className="">
         <img className="w-64" src="/images/logo.png" alt="Logo" />
       </div>
 
-      <div className="flex items-center gap-10">
-        <Link href="/">Home</Link>
-        {/* <div className="relative inline-block text-left" ref={menu1Ref}>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="pl-4 pr-3 py-2 bg-customGreen text-white rounded-2xl flex"
+      <div className="flex items-center gap-5">
+        <Link
+          href="/"
+          className="hover:text-customGreen transition duration-300 ease-in-out"
+        >
+          Home
+        </Link>
+
+        {userData?.token && (
+          <Link
+            href="/orders"
+            className="hover:text-customGreen transition duration-300 ease-in-out"
           >
-            <p className="mr-2">Categorías</p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m19.5 8.25-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </button>
-          {isOpen && (
-            <div className="absolute right-0 mt-2 w-48 z-10 bg-white rounded shadow">
-              <Link
-                href="/recomended"
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                onClick={handleCloseMenu1}
-              >
-                Recomendados
-              </Link>
-              <Link
-                href="/cellphones"
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                onClick={handleCloseMenu1}
-              >
-                Celulares
-              </Link>
-              <Link
-                href="/televisions"
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                onClick={handleCloseMenu1}
-              >
-                Televisores
-              </Link>
-            </div>
-          )}
-        </div> */}
-        {userData?.token && <Link href="/orders">Mis Compras</Link>}
-        <Link href="/help">Ayuda</Link>
+            Mis Compras
+          </Link>
+        )}
+        <Link
+          href="/help"
+          className="hover:text-customGreen transition duration-300 ease-in-out"
+        >
+          Ayuda
+        </Link>
       </div>
 
       {userData?.token ? (
         <>
-          <div className="flex items-center gap-10">
-            <Link href="/favorites">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/favorites"
+              className="hover:scale-125 transition-transform duration-300"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-6"
+                fill="#e66d85"
+                stroke="#34394f"
+                className="w-7 h-7"
+                strokeWidth="1.5"
               >
                 <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
               </svg>
             </Link>
-            <Link href="/cart">
+            <Link
+              href="/cart"
+              className="hover:scale-125 transition-transform duration-300"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
                 viewBox="0 0 24 24"
+                fill="#81aaa2"
+                stroke="#34394f"
+                className="w-7 h-7"
                 strokeWidth="1.5"
-                stroke="currentColor"
-                className="size-6"
               >
                 <path
                   strokeLinecap="round"
@@ -138,32 +115,41 @@ export function Header() {
             </Link>
           </div>
 
-          <div className="relative inline-block text-left" ref={menu2Ref}>
+          <div className="inline-block relative text-left " ref={menuRef}>
             <button
-              onClick={() => setIsOpen2(!isOpen2)}
-              className="px-4 py-2 bg-blue-500 text-white rounded-full"
+              onClick={() => setIsOpen(!isOpen)}
+              className={`
+                pl-3 py-1
+                ${isOpen ? "bg-customGreen" : "bg-customBlue"}
+                hover:bg-customGreen
+                transition duration-300 ease-in-out
+                text-gray-100 rounded-full
+                flex items-center
+              `}
             >
+              <p className="px-1">{avatarName}</p>
               <img src="/images/avatar.png" className="w-16" alt="Usuario" />
             </button>
-            {isOpen2 && (
-              <div className="absolute right-0 mt-2 w-48 z-10 bg-white rounded shadow">
+
+            {isOpen && (
+              <div className="absolute right-0 mt-2 w-48 z-10  bg-gray-100  rounded-b shadow-lg">
                 <Link
                   href="/user-dashboard"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  className="block px-4 py-2  hover:bg-customGreen transition duration-300 ease-in-out"
                   onClick={handleCloseMenu2}
                 >
                   Perfil
                 </Link>
                 <Link
                   href="/orders"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  className="block px-4 py-2 hover:bg-customGreen transition duration-300 ease-in-out"
                   onClick={handleCloseMenu2}
                 >
                   Mis Compras
                 </Link>
 
                 <button
-                  className="w-full text-start px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  className="w-full text-start px-4 py-2 hover:bg-customGreen transition duration-300 ease-in-out"
                   onClick={() => {
                     handleCloseMenu2();
 
@@ -194,11 +180,28 @@ export function Header() {
         </>
       ) : (
         <>
-          <div className="flex items-center gap-10">
-            <Link href="/register">Crear cuenta</Link>
-            <Link href="/login">Ingresar</Link>
-            <Link href="/help">Ayuda</Link>
-          </div>
+          {pathname !== "/register" && (
+            <Link
+              href="/register"
+              className="flex items-center gap-5 bg-customBlue
+              hover:bg-customGreen
+              transition duration-300 ease-in-out
+              text-gray-100 rounded-xl px-3 py-2"
+            >
+              Crear cuenta
+            </Link>
+          )}
+          {pathname !== "/login" && (
+            <Link
+              href="/login"
+              className="flex items-center gap-5 bg-customBlue
+              hover:bg-customGreen
+              transition duration-300 ease-in-out
+              text-gray-100 rounded-xl px-3 py-2"
+            >
+              Ingresar
+            </Link>
+          )}
         </>
       )}
     </div>
