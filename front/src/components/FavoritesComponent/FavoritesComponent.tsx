@@ -28,7 +28,7 @@ export function FavoritesComponent() {
           }
         });
       }
-    }, 100);
+    }, 200);
 
     return () => {
       clearTimeout(timeoutId);

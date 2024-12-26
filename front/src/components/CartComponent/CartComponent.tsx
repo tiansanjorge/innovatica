@@ -28,7 +28,7 @@ export function CartComponent() {
           }
         });
       }
-    }, 100);
+    }, 200);
 
     return () => {
       clearTimeout(timeoutId);

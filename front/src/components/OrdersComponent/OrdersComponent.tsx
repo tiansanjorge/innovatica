@@ -28,7 +28,7 @@ export function OrdersComponent() {
         });
       }
       getOrders();
-    }, 100);
+    }, 200);
 
     return () => {
       clearTimeout(timeoutId);

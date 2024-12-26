@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
+import styles from "./header.module.css";
 
 export function Header() {
   const router = useRouter();
@@ -47,10 +48,12 @@ export function Header() {
   };
 
   return (
-    <div className="flex items-center justify-evenly text-lg py-2 ">
-      <div className="">
+    <div
+      className={`flex items-center justify-evenly text-lg pt-2 pb-3 ${styles.gradientBorderBottom}`}
+    >
+      <Link href="/">
         <img className="w-64" src="/images/logo.png" alt="Logo" />
-      </div>
+      </Link>
 
       <div className="flex items-center gap-5">
         <Link
@@ -179,14 +182,14 @@ export function Header() {
           </div>
         </>
       ) : (
-        <>
+        <div className="flex items-center gap-5">
           {pathname !== "/register" && (
             <Link
               href="/register"
-              className="flex items-center gap-5 bg-customBlue
+              className="bg-customBlue
               hover:bg-customGreen
               transition duration-300 ease-in-out
-              text-gray-100 rounded-xl px-3 py-2"
+              text-gray-100 rounded-full px-3 py-2"
             >
               Crear cuenta
             </Link>
@@ -194,15 +197,15 @@ export function Header() {
           {pathname !== "/login" && (
             <Link
               href="/login"
-              className="flex items-center gap-5 bg-customBlue
+              className=" bg-customBlue
               hover:bg-customGreen
               transition duration-300 ease-in-out
-              text-gray-100 rounded-xl px-3 py-2"
+              text-gray-100 rounded-full px-3 py-2"
             >
               Ingresar
             </Link>
           )}
-        </>
+        </div>
       )}
     </div>
   );

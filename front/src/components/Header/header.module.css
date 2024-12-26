@@ -1,0 +1,6 @@
+.gradientBorderBottom {
+  background-image: linear-gradient(to right, #81aaa2, #34394f);
+  background-repeat: no-repeat;
+  background-size: 100% 4px;
+  background-position: bottom;
+}
