@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function HelpComponent() {
   return (
-    <div className=" w-full py-5 bg-cyan-500 text-white text-center">
+    <div className={`w-full py-5 bg-cyan-500 text-white text-center`}>
       <h3 className="mb-4 font-bold text-4xl">SOPORTE & ATENCION 24HS</h3>
       <div className="flex justify-evenly">
         <div>
