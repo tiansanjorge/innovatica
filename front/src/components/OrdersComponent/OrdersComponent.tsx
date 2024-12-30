@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { getOrdersService } from "@/services/services";
@@ -11,6 +12,7 @@ export function OrdersComponent() {
   const router = useRouter();
   const { userData } = useUserStore();
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -47,9 +49,11 @@ export function OrdersComponent() {
       });
       return;
     }
+    setIsLoading(true);
     const res = await getOrdersService(userData?.token);
     console.log(res);
     setOrders(res);
+    setIsLoading(false);
   };
 
   const viewOrder = (order: Order) => {
@@ -73,20 +77,52 @@ export function OrdersComponent() {
   };
 
   return (
-    <div>
-      {orders.length > 0 ? (
-        orders.map((order: Order) => (
-          <div key={order.id} className="border p-4 mb-4">
-            <p>Fecha: {new Date(order.date).toLocaleDateString()}</p>
-            <p>{order.status === "approved" ? "En proceso" : "Fallida"}</p>
-            <button onClick={() => viewOrder(order)}>Ver Detalle</button>
-          </div>
-        ))
+    <>
+      {isLoading ? (
+        <div className="text-center text-2xl pt-10">
+          Cargando tus compras...
+        </div>
       ) : (
-        <div className="text-center">
-          <p>No has realizado ninguna compra aún</p>
+        <div className="flex flex-col items-center text-center py-5">
+          <div className="px-3 py-1 bg-customBlue text-gray-100 rounded-2xl w-2/3 mb-5">
+            <h1>MIS COMPRAS</h1>
+          </div>
+
+          <div className="flex justify-evenly flex-wrap w-2/3">
+            {orders.length > 0 ? (
+              orders.map((order: Order) => (
+                <div
+                  key={order.id}
+                  className="bg-gradient-to-b from-customGreen to-customPink w-5/12 py-4 px-5 rounded-2xl shadow mb-4"
+                >
+                  <div className="flex justify-evenly w-full border p-4 rounded-2xl bg-gray-100 shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div className="w-1/3">
+                      <img src={order.products[0].image} alt="" />
+                    </div>
+                    <div className="flex flex-col gap-3 justify-center">
+                      <p className="font-bold">Orden n° {order.id}</p>
+                      <p>Fecha: {new Date(order.date).toLocaleDateString()}</p>
+                      <p>
+                        {order.status === "approved" ? "En proceso" : "Fallida"}
+                      </p>
+                      <button
+                        onClick={() => viewOrder(order)}
+                        className="px-4 py-2 text-gray-100  bg-customBlue hover:bg-customGreen rounded-full transition duration-300 ease-in-out"
+                      >
+                        Ver Detalle
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-center">
+                <p>No has realizado ninguna compra aún.</p>
+              </div>
+            )}
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
