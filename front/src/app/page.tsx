@@ -8,11 +8,9 @@ export default async function Home() {
 
   return (
     <>
-      <div>
-        <SliderHome />
-        <Products products={products} />
-        <HelpBanner />
-      </div>
+      <SliderHome />
+      <Products products={products} />
+      <HelpBanner />
     </>
   );
 }

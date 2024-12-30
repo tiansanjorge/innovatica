@@ -9,9 +9,7 @@ export default async function SingleProduct({
 
   return (
     <>
-      <div>
-        <ProductDetail id={productID} />
-      </div>
+      <ProductDetail id={productID} />
     </>
   );
 }

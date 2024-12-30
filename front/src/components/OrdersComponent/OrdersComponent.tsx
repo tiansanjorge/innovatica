@@ -74,21 +74,19 @@ export function OrdersComponent() {
 
   return (
     <div>
-      <div>
-        {orders.length > 0 ? (
-          orders.map((order: Order) => (
-            <div key={order.id} className="border p-4 mb-4">
-              <p>Fecha: {new Date(order.date).toLocaleDateString()}</p>
-              <p>{order.status === "approved" ? "En proceso" : "Fallida"}</p>
-              <button onClick={() => viewOrder(order)}>Ver Detalle</button>
-            </div>
-          ))
-        ) : (
-          <div className="text-center">
-            <p>No has realizado ninguna compra aún</p>
+      {orders.length > 0 ? (
+        orders.map((order: Order) => (
+          <div key={order.id} className="border p-4 mb-4">
+            <p>Fecha: {new Date(order.date).toLocaleDateString()}</p>
+            <p>{order.status === "approved" ? "En proceso" : "Fallida"}</p>
+            <button onClick={() => viewOrder(order)}>Ver Detalle</button>
           </div>
-        )}
-      </div>
+        ))
+      ) : (
+        <div className="text-center">
+          <p>No has realizado ninguna compra aún</p>
+        </div>
+      )}
     </div>
   );
 }
