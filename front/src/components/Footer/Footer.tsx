@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <div className="flex items-center justify-evenly px-4 py-5 bg-customBlue text-gray-100">
+    <div className="flex items-center justify-evenly px-4 py-5 ">
       <Link
         href="/"
         className="pr-5 pl-2 py-1 bg-gray-100 rounded-full shadow-inset-lg"
@@ -75,7 +75,7 @@ export function Footer() {
         <div className="flex flex-col gap-2">
           <a
             href="mailto:innovatica@gmail.com"
-            className="flex gap-1 items-center hover:text-customGreen text-gray-100 stroke-gray-100 hover:stroke-customGreen"
+            className="flex gap-1 items-center hover:text-customGreen  stroke-gray-100 hover:stroke-customGreen"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ export function Footer() {
             href="https://wa.me/1560069979"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex gap-1 items-center hover:text-customGreen text-gray-100 fill-gray-100 hover:fill-customGreen"
+            className="flex gap-1 items-center hover:text-customGreen fill-gray-100 hover:fill-customGreen"
           >
             <svg
               viewBox="0 0 256 259"

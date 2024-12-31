@@ -126,9 +126,7 @@ export function ProductDetail({ id }: { id: string }) {
         <div className="w-5/12 flex flex-col justify-evenly">
           <div className="mb-16">
             <div className="flex gap-3 items-center mb-5">
-              <h2 className="text-gray-100 text-3xl font-bold ">
-                {product?.name}
-              </h2>
+              <h2 className=" text-3xl font-bold ">{product?.name}</h2>
             </div>
             <p className="text-xl font-semibold">${product?.price}</p>
           </div>
@@ -149,7 +147,7 @@ export function ProductDetail({ id }: { id: string }) {
           <div className="flex gap-2">
             <button
               onClick={handleAddToCart}
-              className="px-4 py-2 text-gray-100  bg-customBlue hover:bg-customPink rounded-full transition duration-300 ease-in-out"
+              className="px-4 py-2 bg-customBlue hover:bg-customPink rounded-full transition duration-300 ease-in-out"
             >
               Agregar al Carrito
             </button>

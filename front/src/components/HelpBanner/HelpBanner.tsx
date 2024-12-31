@@ -10,7 +10,7 @@ export function HelpBanner() {
         <div className="flex flex-col gap-2">
           <a
             href="mailto:innovatica@gmail.com"
-            className="flex gap-2 items-center hover:text-customGreen text-gray-100 stroke-gray-100 hover:stroke-customGreen"
+            className="flex gap-2 items-center hover:text-customGreen stroke-gray-100 hover:stroke-customGreen"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

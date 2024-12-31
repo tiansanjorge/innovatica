@@ -49,9 +49,12 @@ export function Header() {
 
   return (
     <div
-      className={`flex items-center justify-evenly text-lg pt-2 pb-3 bg-customDarkBlue ${styles.gradientBorderBottom}`}
+      className={`flex items-center justify-evenly text-lg pt-3 pb-4 bg-customDarkBlue ${styles.gradientBorderBottom}`}
     >
-      <Link href="/">
+      <Link
+        href="/"
+        className="pr-5 pl-2 py-1 bg-gray-100 rounded-full shadow-inset-lg"
+      >
         <img className="w-64" src="/images/logo.png" alt="Logo" />
       </Link>
 
@@ -90,7 +93,7 @@ export function Header() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="#e66d85"
-                stroke="#34394f"
+                stroke="#none"
                 className="w-7 h-7"
                 strokeWidth="1.5"
               >
@@ -104,8 +107,8 @@ export function Header() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill="#81aaa2"
-                stroke="#34394f"
+                fill="none"
+                stroke="#81aaa2"
                 className="w-7 h-7"
                 strokeWidth="1.5"
               >
@@ -126,7 +129,7 @@ export function Header() {
                 ${isOpen ? "bg-customGreen" : "bg-customBlue"}
                 hover:bg-customGreen
                 transition duration-300 ease-in-out
-                text-gray-100 rounded-full
+                rounded-full
                 flex items-center
               `}
             >
@@ -135,24 +138,24 @@ export function Header() {
             </button>
 
             {isOpen && (
-              <div className="absolute right-0 mt-2 w-48 z-10  bg-gray-100  rounded-b shadow-lg">
+              <div className="absolute right-0 mt-2 w-48 z-10 text-customBlue bg-gray-100  rounded-xl shadow-lg">
                 <Link
                   href="/user-dashboard"
-                  className="block px-4 py-2  hover:bg-customGreen transition duration-300 ease-in-out"
+                  className="block px-4 py-2  hover:bg-customGreen transition duration-300 ease-in-out rounded-t-xl"
                   onClick={handleCloseMenu2}
                 >
                   Perfil
                 </Link>
                 <Link
                   href="/orders"
-                  className="block px-4 py-2 hover:bg-customGreen transition duration-300 ease-in-out"
+                  className="block px-4 py-2 hover:bg-customGreen transition duration-300 ease-in-out "
                   onClick={handleCloseMenu2}
                 >
                   Mis Compras
                 </Link>
 
                 <button
-                  className="w-full text-start px-4 py-2 hover:bg-customGreen transition duration-300 ease-in-out"
+                  className="w-full text-start px-4 py-2 hover:bg-customGreen transition duration-300 ease-in-out rounded-b-xl"
                   onClick={() => {
                     handleCloseMenu2();
 
@@ -189,7 +192,7 @@ export function Header() {
               className="bg-customBlue
               hover:bg-customGreen
               transition duration-300 ease-in-out
-              text-gray-100 rounded-full px-3 py-2"
+              rounded-full px-3 py-2"
             >
               Crear cuenta
             </Link>
@@ -200,7 +203,7 @@ export function Header() {
               className=" bg-customBlue
               hover:bg-customGreen
               transition duration-300 ease-in-out
-              text-gray-100 rounded-full px-3 py-2"
+              rounded-full px-3 py-2"
             >
               Ingresar
             </Link>

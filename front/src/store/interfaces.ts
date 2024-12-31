@@ -28,13 +28,6 @@ export interface IUserState {
   clearUserData: () => void;
 }
 
-// export interface ICartState {
-//   cart: IProduct[];
-//   addToCart: (item: IProduct) => void;
-//   removeFromCart: (productId: number) => void;
-//   clearCart: () => void;
-// }
-
 export interface ICartState {
   cart: IProduct[];
   addToCart: (product: IProduct, callback: (isAdded: boolean) => void) => void;
