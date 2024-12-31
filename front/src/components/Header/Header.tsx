@@ -49,7 +49,7 @@ export function Header() {
 
   return (
     <div
-      className={`flex items-center justify-evenly text-lg pt-2 pb-3 ${styles.gradientBorderBottom}`}
+      className={`flex items-center justify-evenly text-lg pt-2 pb-3 bg-customDarkBlue ${styles.gradientBorderBottom}`}
     >
       <Link href="/">
         <img className="w-64" src="/images/logo.png" alt="Logo" />

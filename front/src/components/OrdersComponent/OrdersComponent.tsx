@@ -7,12 +7,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Order } from "../userDashboardComponent/interfaces";
+import { OrderModal } from "../OrderModal/OrderModal";
 
 export function OrdersComponent() {
   const router = useRouter();
   const { userData } = useUserStore();
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -57,34 +59,22 @@ export function OrdersComponent() {
   };
 
   const viewOrder = (order: Order) => {
-    Swal.fire({
-      title: `Detalles de la orden #${order.id}`,
-      html: `<div >${order.products
-        .map(
-          (product) =>
-            `<div class="text-start">
-              <p>${product.name}</p>
-              <p>$${product.price}</p>
-              <img class="w-1/3" src=${product.image} alt="imagen del producto"/>
-            </div>`
-        )
-        .join("")}</div>`,
-      showCloseButton: true,
-      width: "800px",
-      confirmButtonText: "Cerrar",
-      allowOutsideClick: true,
-    });
+    setSelectedOrder(order);
+  };
+
+  const closeModal = () => {
+    setSelectedOrder(null); // Cierra el modal
   };
 
   return (
     <>
       {isLoading ? (
-        <div className="text-center text-2xl pt-10">
+        <div className="text-center text-2xl pt-10 ">
           Cargando tus compras...
         </div>
       ) : (
-        <div className="flex flex-col items-center text-center py-5">
-          <div className="px-3 py-1 bg-customBlue text-gray-100 rounded-2xl w-2/3 mb-5">
+        <div className="flex flex-col items-center text-center py-5 bg-customBlue">
+          <div className="px-3 py-1 bg-slate-900 text-gray-100 rounded-2xl shadow-lg w-1/4 mb-5">
             <h1>MIS COMPRAS</h1>
           </div>
 
@@ -121,6 +111,7 @@ export function OrdersComponent() {
               </div>
             )}
           </div>
+          <OrderModal order={selectedOrder} onClose={closeModal} />
         </div>
       )}
     </>

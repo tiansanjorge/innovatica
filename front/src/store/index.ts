@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { ICartState, IUserStored, IUserState, IFavState } from "./interfaces";
-import Swal from "sweetalert2";
 import { IProduct } from "@/Interfaces/interfaces";
 
 // USER
@@ -35,37 +34,31 @@ export const useCartStore = create<ICartState>()(
     persist(
       (set) => ({
         cart: [],
-
-        addToCart: (product: IProduct) =>
+        addToCart: (
+          product: IProduct,
+          callback: (isAdded: boolean) => void
+        ) => {
           set((state) => {
-            const existingItem = state.cart.find((i) => i.id === product.id);
+            const existingItem = state.cart.find(
+              (item) => item.id === product.id
+            );
             if (existingItem) {
-              Swal.fire({
-                icon: "warning",
-                title: "Producto ya en el carrito",
-                text: "Este producto ya está en tu carrito. No puedes agregarlo nuevamente.",
-                confirmButtonText: "Entendido",
-              });
-              console.log(state.cart);
+              callback(false);
               return { cart: state.cart };
             } else {
               const newCart = [...state.cart, product];
-              console.log(newCart);
+              callback(true);
               return { cart: newCart };
             }
-          }),
-
-        removeFromCart: (productId: number) =>
-          set((state) => {
-            const updatedCart = state.cart.filter(
-              (product) => product.id !== productId
-            );
-            console.log(updatedCart);
-            return { cart: updatedCart };
-          }),
-
+          });
+        },
+        removeFromCart: (productId: number) => {
+          set((state) => ({
+            cart: state.cart.filter((product) => product.id !== productId),
+          }));
+        },
         clearCart: () => {
-          set(() => ({ cart: [] }));
+          set({ cart: [] });
         },
       }),
       {
@@ -75,6 +68,52 @@ export const useCartStore = create<ICartState>()(
     )
   )
 );
+
+// export const useCartStore = create<ICartState>()(
+//   devtools(
+//     persist(
+//       (set) => ({
+//         cart: [],
+
+//         addToCart: (product: IProduct) =>
+//           set((state) => {
+//             const existingItem = state.cart.find((i) => i.id === product.id);
+//             if (existingItem) {
+//               Swal.fire({
+//                 icon: "warning",
+//                 title: "Producto ya en el carrito",
+//                 text: "Este producto ya está en tu carrito. No puedes agregarlo nuevamente.",
+//                 confirmButtonText: "Entendido",
+//               });
+//               console.log(state.cart);
+//               return { cart: state.cart };
+//             } else {
+//               const newCart = [...state.cart, product];
+//               console.log(newCart);
+//               return { cart: newCart };
+//             }
+//           }),
+
+//         removeFromCart: (productId: number) =>
+//           set((state) => {
+//             const updatedCart = state.cart.filter(
+//               (product) => product.id !== productId
+//             );
+//             console.log(updatedCart);
+//             return { cart: updatedCart };
+//           }),
+
+//         clearCart: () => {
+//           set(() => ({ cart: [] }));
+//         },
+//       }),
+//       {
+//         name: "cart-data",
+//         storage: createJSONStorage(() => localStorage),
+//       }
+//     )
+//   )
+// );
 
 export const useFavStore = create<IFavState>()(
   devtools(

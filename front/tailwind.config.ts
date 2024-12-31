@@ -13,6 +13,7 @@ export default {
         foreground: "var(--foreground)",
         customGreen: "#81aaa2",
         customBlue: "#34394f",
+        customDarkBlue: "#1d202c",
         customPink: "#e66d85",
       },
       boxShadow: {

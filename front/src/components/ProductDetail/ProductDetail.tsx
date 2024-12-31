@@ -70,16 +70,26 @@ export function ProductDetail({ id }: { id: string }) {
       });
     } else {
       if (product) {
-        addToCart(product);
-        Swal.fire({
-          title: "Agregado",
-          text: "El producto fué incluído en tu carrito",
-          icon: `success`,
-          showCloseButton: true,
-          confirmButtonText: "Al carrito",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            router.push("/cart");
+        addToCart(product, (isAdded) => {
+          if (isAdded) {
+            Swal.fire({
+              title: "Agregado",
+              text: "El producto fue incluido en tu carrito",
+              icon: `success`,
+              showCloseButton: true,
+              confirmButtonText: "Al carrito",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                router.push("/cart");
+              }
+            });
+          } else {
+            Swal.fire({
+              icon: "warning",
+              title: "Producto ya en el carrito",
+              text: "Este producto ya está en tu carrito. No puedes agregarlo nuevamente.",
+              confirmButtonText: "Entendido",
+            });
           }
         });
       }
