@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Order } from "../userDashboardComponent/interfaces";
 import { OrderModal } from "../OrderModal/OrderModal";
-import { GlassEffectDiv } from "./GlassEffectDiv";
+import { GlassEffectDiv } from "../UI/GlassEffectDiv";
 
 export function OrdersComponent() {
   const router = useRouter();
@@ -75,7 +75,7 @@ export function OrdersComponent() {
   };
 
   const closeModal = () => {
-    setSelectedOrder(null); // Cierra el modal
+    setSelectedOrder(null);
   };
 
   return (

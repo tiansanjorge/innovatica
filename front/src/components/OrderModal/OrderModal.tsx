@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import React from "react";
 import { Order } from "../userDashboardComponent/interfaces";
-import { GlassEffectDiv } from "../OrdersComponent/GlassEffectDiv";
+import { GlassEffectDiv } from "../UI/GlassEffectDiv";
 
 const ModalBackdrop = styled.div`
   position: fixed;

@@ -6,6 +6,7 @@ import { useCartStore, useFavStore, useUserStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { GlassEffectDiv } from "../UI/GlassEffectDiv";
 
 export function ProductDetail({ id }: { id: string }) {
   const router = useRouter();
@@ -118,7 +119,7 @@ export function ProductDetail({ id }: { id: string }) {
 
   return (
     <div className="flex-grow w-full flex justify-center bg-gradient-to-b from-customGreen to-customBlue py-8">
-      <div className="w-1/2 bg-customGreen flex justify-center items-center p-5 rounded-2xl">
+      <GlassEffectDiv className="w-1/2 flex justify-center items-center p-5 rounded-2xl">
         <div className="w-7/12">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={product?.image} alt=""></img>
@@ -153,7 +154,7 @@ export function ProductDetail({ id }: { id: string }) {
             </button>
           </div>
         </div>
-      </div>
+      </GlassEffectDiv>
     </div>
   );
 }
