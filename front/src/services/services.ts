@@ -13,7 +13,6 @@ export async function getProducts(): Promise<IProduct[]> {
   try {
     const res = await fetch(`${apiURL}/products`, {
       method: "GET",
-      next: { revalidate: 3600 },
     });
 
     const products: IProduct[] = await res.json();

@@ -28,7 +28,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Embrace efficiency and sophistication with the MacBook Air: lightweight design meets powerful performance, stunning Retina display brings your work to life, and all-day battery life keeps you productive wherever you go. Elevate your computing experience with the MacBook Air.",
     image:
-      "https://www.pngarts.com/files/8/Apple-iPhone-11-Download-PNG-Image.png",
+      "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111883_macbookair.png",
     categoryId: 2,
     stock: 10,
   },
@@ -38,7 +38,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Unleash your creativity and productivity with the iPad Pro: powerful performance, stunning Liquid Retina display, and all-day battery life make the iPad Pro the perfect tool for work and play. Transform your ideas into reality with the iPad Pro.",
     image:
-      "https://www.pngarts.com/files/8/Apple-iPhone-11-Download-PNG-Image.png",
+      "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111979_ipad-pro-12-2018.png",
     categoryId: 3,
     stock: 10,
   },
@@ -48,7 +48,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Stay connected and healthy with the Apple Watch Series 6: track your workouts, monitor your health, and stay in touch with the people and information you care about most. Experience the future of health and wellness with the Apple Watch Series 6.",
     image:
-      "https://www.pngarts.com/files/8/Apple-iPhone-11-Download-PNG-Image.png",
+      "https://maximstore.com/_next/image?url=https%3A%2F%2Fback.maximstore.com%2Fstatic%2Fimages%2Ff890edb8-bc09-423d-8aac-534b6ab23a31.png&w=3840&q=75",
     categoryId: 4,
     stock: 10,
   },
@@ -58,7 +58,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Immerse yourself in sound with the AirPods Pro: active noise cancellation, transparency mode, and customizable fit make the AirPods Pro the perfect companion for music, calls, and everything in between. Elevate your audio experience with the AirPods Pro.",
     image:
-      "https://www.pngarts.com/files/8/Apple-iPhone-11-Download-PNG-Image.png",
+      "https://www.macstation.com.ar/web/image/product.template/63258/image_1024?unique=16d5967",
     categoryId: 5,
     stock: 10,
   },
@@ -68,7 +68,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Elevate your home audio experience with the HomePod mini: immersive sound, intelligent assistant, and smart home hub make the HomePod mini the perfect addition to your home. Enjoy a world of music, news, and more with the HomePod mini.",
     image:
-      "https://www.pngarts.com/files/8/Apple-iPhone-11-Download-PNG-Image.png",
+      "https://www.apple.com/v/homepod-mini/j/images/overview/hero_homepod_blue__eobtqej8h9me_large.png",
     categoryId: 6,
     stock: 10,
   },
