@@ -93,7 +93,7 @@ export function OrderModal({ order, onClose }: OrderModalProps) {
                 className=" rounded-xl flex items-center w-5/12 mb-3"
               >
                 <img
-                  className="w-1/2"
+                  className="w-1/2 p-3"
                   src={product.image}
                   alt="imagen del producto"
                 />

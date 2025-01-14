@@ -85,8 +85,8 @@ export function OrdersComponent() {
           Cargando tus compras...
         </div>
       ) : (
-        <div className="flex flex-col items-center text-center py-5 bg-customBlue">
-          <div className="px-3 py-1 bg-slate-900 rounded-2xl shadow-lg w-1/4 mb-5">
+        <div className="flex flex-col items-center text-center py-5">
+          <div className="px-3 py-1  rounded-2xl  bg-slate-900 shadow-lg w-1/4 mb-5">
             <h1>MIS COMPRAS</h1>
           </div>
 
@@ -97,7 +97,7 @@ export function OrdersComponent() {
                   key={order.id}
                   className="bg-gradient-to-b from-customGreen to-customPink w-5/12 py-4 px-5 rounded-2xl shadow mb-4"
                 >
-                  <GlassEffectDiv className="flex justify-evenly w-full border p-4 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
+                  <GlassEffectDiv className="flex justify-evenly items-center w-full border p-4 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
                     <div className="w-1/3">
                       <img src={order.products[0].image} alt="" />
                     </div>
