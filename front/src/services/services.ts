@@ -1,3 +1,5 @@
+"use Client";
+
 import { IProduct, IUserCredentials } from "@/Interfaces/interfaces";
 import {
   ILoginResponse,
