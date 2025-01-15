@@ -9,7 +9,7 @@ export function CardProduct({ product }: { product: IProduct }) {
   console.log(product);
   return (
     <Link
-      href={`/products/${id}`}
+      href={`/products/${id.toString()}`}
       className="hover:scale-105 transition-transform duration-500 ease-in-out"
     >
       <GlassEffectDiv className="flex flex-col justify-between text-center m-2 rounded-xl h-72">

@@ -74,7 +74,7 @@ export function FavoritesComponent() {
             <>
               {fav.map((product) => (
                 <Link
-                  href={`/products/${product.id}`}
+                  href={`/products/${product.id.toString()}`}
                   key={product.id}
                   className="bg-gradient-to-b from-customGreen to-customPink w-5/12 py-4 px-5 rounded-2xl shadow mb-4"
                 >
