@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { loginUser } from "@/services/services";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store";
-import { IUserCredentials } from "@/interfaces/interfaces";
+import { IUserCredentials } from "@/Interfaces/interfaces";
 
 export function LoginForm() {
   const router = useRouter();

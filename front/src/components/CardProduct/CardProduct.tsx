@@ -1,6 +1,6 @@
 "use client";
 
-import { IProduct } from "@/interfaces/interfaces";
+import { IProduct } from "@/Interfaces/interfaces";
 import Link from "next/link";
 import { GlassEffectDiv } from "../UI/GlassEffectDiv";
 
