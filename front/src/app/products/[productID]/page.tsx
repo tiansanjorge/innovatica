@@ -5,7 +5,7 @@ export default async function SingleProduct({
 }: {
   params: { productID: string };
 }) {
-  const { productID } = await params;
+  const { productID } = params;
 
   return (
     <>
