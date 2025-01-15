@@ -1,11 +1,11 @@
 import { ProductDetail } from "@/components/ProductDetail/ProductDetail";
 
-export default async function SingleProduct({
+export default function SingleProduct({
   params,
 }: {
   params: { productID: string };
 }) {
-  const { productID } = await params;
+  const { productID } = params;
 
   return (
     <>
