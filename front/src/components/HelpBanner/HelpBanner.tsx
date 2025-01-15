@@ -53,7 +53,10 @@ export function HelpBanner() {
           Solicitar Asistencia
         </Link>
         <div>
-          <a className="flex items-center hover:text-customGreen" href="">
+          <a
+            className="flex items-center hover:text-customGreen"
+            href="https://wa.me/1562069979"
+          >
             <svg
               className="mr-2 size-10"
               viewBox="0 0 256 259"

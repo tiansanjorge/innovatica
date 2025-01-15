@@ -94,7 +94,7 @@ export function Footer() {
             innovatica@gmail.com
           </a>
           <a
-            href="https://wa.me/1560069979"
+            href="https://wa.me/1562069979"
             target="_blank"
             rel="noopener noreferrer"
             className="flex gap-1 items-center hover:text-customGreen fill-gray-100 hover:fill-customGreen"

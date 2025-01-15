@@ -53,7 +53,7 @@ export function HelpComponent() {
           Solicitar Asistencia
         </Link>
         <div>
-          <a className="flex items-center" href="">
+          <a className="flex items-center" href="https://wa.me/1562069979">
             <svg
               className="mr-2"
               viewBox="0 0 256 259"
