@@ -1,6 +1,6 @@
 "use client";
 
-import { IProduct } from "@/Interfaces/interfaces";
+import { IProduct } from "@/interfaces/interfaces";
 import { useCartStore, useFavStore, useUserStore } from "@/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

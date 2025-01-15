@@ -1,15 +1,15 @@
-// import { ProductDetail } from "@/components/ProductDetail/ProductDetail";
+import { ProductDetail } from "@/components/ProductDetail/ProductDetail";
 
-// export default async function SingleProduct({
-//   params,
-// }: {
-//   params: { productID: string };
-// }) {
-//   const { productID } = await params;
+interface PageProps {
+  params: Promise<{ productID: string }>;
+}
 
-//   return (
-//     <>
-//       <ProductDetail id={productID} />
-//     </>
-//   );
-// }
+export default async function SingleProduct({ params }: PageProps) {
+  const { productID } = await params; // Aquí usamos await porque ahora params es una promesa.
+
+  return (
+    <div>
+      <ProductDetail id={productID} />
+    </div>
+  );
+}

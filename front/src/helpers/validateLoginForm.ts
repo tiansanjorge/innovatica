@@ -1,4 +1,4 @@
-import { IUserCredentials } from "@/services/interfaces";
+import { IUserCredentials } from "@/interfaces/interfaces";
 
 interface IErrors {
   [key: string]: string;

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { ICartState, IUserStored, IUserState, IFavState } from "./interfaces";
-import { IProduct } from "@/Interfaces/interfaces";
+import { IProduct } from "@/interfaces/interfaces";
 
 // USER
 

@@ -1,4 +1,4 @@
-import { IProduct } from "@/Interfaces/interfaces";
+import { IProduct } from "@/interfaces/interfaces";
 import { CardProduct } from "../CardProduct/CardProduct";
 
 export function Products({ products }: { products: IProduct[] }) {

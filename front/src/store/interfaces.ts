@@ -1,4 +1,4 @@
-import { IProduct } from "@/Interfaces/interfaces";
+import { IProduct } from "@/interfaces/interfaces";
 
 export interface IOrder {
   id: number;

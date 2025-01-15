@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { IProduct } from "@/Interfaces/interfaces";
+import { IProduct } from "@/interfaces/interfaces";
 import { createOrderService } from "@/services/services";
 import { useCartStore, useUserStore } from "@/store";
 import Link from "next/link";

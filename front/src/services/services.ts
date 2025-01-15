@@ -1,4 +1,4 @@
-import { IProduct, IUserCredentials } from "@/Interfaces/interfaces";
+import { IProduct, IUserCredentials } from "@/interfaces/interfaces";
 import {
   ILoginResponse,
   IUserData,
