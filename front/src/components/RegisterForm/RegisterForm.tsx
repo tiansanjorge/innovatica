@@ -105,7 +105,7 @@ export function RegisterForm() {
         className="flex flex-col items-center w-1/2 max-w-md mx-auto bg-customGreen p-4 rounded-2xl shadow-lg"
         onSubmit={handleSubmit}
       >
-        <div className="w-full px-3 py-1 rounded-2xl  bg-slate-900 shadow-lg mb-5">
+        <div className="w-full px-3 py-1 rounded-2xl  bg-customDarkBlue shadow-lg mb-5">
           <h1>CREAR CUENTA</h1>
         </div>
 
@@ -170,9 +170,9 @@ export function RegisterForm() {
           onBlur={handleBlur}
         />
         <button
-          className={`w-fit mt-3 px-3 py-1 rounded-2xl focus:outline-none focus:ring-2 ${
+          className={`w-fit mt-3 px-3 py-1 rounded-2xl ${
             isFormValid
-              ? "bg-customBlue hover:bg-customPink "
+              ? "bg-customBlue hover:bg-customPink transition duration-300"
               : "bg-gray-300 cursor-not-allowed"
           }`}
           type="submit"
@@ -185,7 +185,7 @@ export function RegisterForm() {
         <p>Si ya tienes una cuenta</p>
         <Link
           href="/login"
-          className="w-fit text-lg underline text-customBlue hover:text-teal-800 transition duration-300"
+          className="w-fit text-lg hover:underline text-customBlue hover:text-teal-800 transition duration-300"
         >
           Inicia sesión
         </Link>

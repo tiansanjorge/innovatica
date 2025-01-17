@@ -89,7 +89,7 @@ export function SliderHome() {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-3 h-3 rounded-full ${
-              currentIndex === index ? "bg-gray-800" : "bg-gray-400"
+              currentIndex === index ? "bg-customGreen" : "bg-customBlue"
             }`}
           ></button>
         ))}

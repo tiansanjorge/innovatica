@@ -66,7 +66,7 @@ export function FavoritesComponent() {
   return (
     <>
       <div className="flex flex-col items-center text-center py-5">
-        <div className="px-3 py-1  rounded-2xl  bg-slate-900 shadow-lg w-1/4 mb-5">
+        <div className="px-3 py-1  rounded-2xl  bg-customDarkBlue shadow-lg w-1/4 mb-5">
           <h1>FAVORITOS</h1>
         </div>
         <div className="flex justify-evenly flex-wrap w-2/3">

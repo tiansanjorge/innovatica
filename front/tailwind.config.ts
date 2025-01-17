@@ -12,6 +12,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         customGreen: "#81aaa2",
+        customDarkGreen: "#115e59",
         customBlue: "#34394f",
         customDarkBlue: "#1d202c",
         customPink: "#e66d85",

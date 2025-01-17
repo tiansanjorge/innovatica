@@ -24,12 +24,12 @@ export function FormField({
   return (
     <div className="w-3/4 mb-3 text-sm text-red-800">
       <label
-        className="block mb-1 text-sm font-medium text-gray-700"
+        className="block mb-1 text-sm font-medium text-customDarkBlue"
         htmlFor={name}
       >
         <p className="mb-1">{label}:</p>
         <input
-          className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-2xl focus:ring-2 focus:ring-customPink text-customBlue focus:outline-none"
           name={name}
           type={type}
           value={value ?? ""}

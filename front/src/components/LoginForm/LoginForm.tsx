@@ -99,20 +99,22 @@ export function LoginForm() {
     userCredentials.password;
 
   return (
-    <div className="w-full bg-gray-100 p-6 text-center">
+    <div className="flex flex-grow flex-col items-center w-full p-6 text-center bg-gradient-to-b from-customBlue to-customPink">
       <form
-        className="w-1/2 max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg"
+        className="flex flex-col items-center w-1/2 max-w-md mx-auto bg-customGreen p-4 rounded-2xl shadow-lg"
         onSubmit={handleSubmit}
       >
-        <h1>Iniciar Sesión</h1>
-        <div className="mt-1 text-sm text-red-500">
+        <div className="w-full px-3 py-1 rounded-2xl bg-customDarkBlue shadow-lg mb-5">
+          <h1>INICIAR SESIÓN</h1>
+        </div>
+        <div className="w-3/4 mb-3 text-sm text-red-800">
           <label
-            className="block mb-2 text-sm font-medium text-gray-700"
+            className="block mb-1 text-sm font-medium text-customDarkBlue"
             htmlFor="email"
           >
-            Email:
+            <p className="mb-1">Email:</p>
             <input
-              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-2xl focus:ring-2 focus:ring-customPink text-customBlue focus:outline-none"
               name="email"
               type="string"
               value={userCredentials.email}
@@ -122,14 +124,14 @@ export function LoginForm() {
           </label>
           {touched.email && errors.email && <p> {errors.email} </p>}
         </div>
-        <div className="mt-1 text-sm text-red-500">
+        <div className="w-3/4 mb-3 text-sm text-red-800">
           <label
-            className="block mb-2 text-sm font-medium text-gray-700"
+            className="block mb-1 text-sm font-medium text-customDarkBlue"
             htmlFor="password"
           >
-            Contraseña:
+            <p className="mb-1">Contraseña:</p>
             <input
-              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-2xl focus:ring-2 focus:ring-customPink text-customBlue focus:outline-none"
               name="password"
               type="password"
               value={userCredentials.password}
@@ -140,9 +142,9 @@ export function LoginForm() {
           {touched.password && errors.password && <p> {errors.password} </p>}
         </div>
         <button
-          className={`px-6 py-2  rounded-lg focus:outline-none focus:ring-2 ${
+          className={`w-fit mt-3 px-3 py-1 rounded-2xl ${
             isFormValid
-              ? "bg-blue-500 hover:bg-blue-600 focus:ring-blue-400"
+              ? "bg-customBlue hover:bg-customPink transition duration-300"
               : "bg-gray-300 cursor-not-allowed"
           }`}
           type="submit"
@@ -151,10 +153,15 @@ export function LoginForm() {
           Ingresar
         </button>
       </form>
-      <p>Si aún no tienes una cuenta</p>
-      <Link href="/register">
-        <button>Registrate</button>
-      </Link>
+      <div className="flex flex-col items-center mt-5 w-fit">
+        <p>Si aún no tienes una cuenta</p>
+        <Link
+          href="/register"
+          className="w-fit text-lg hover:underline text-customBlue hover:text-teal-800 transition duration-300"
+        >
+          Registrate
+        </Link>
+      </div>
     </div>
   );
 }

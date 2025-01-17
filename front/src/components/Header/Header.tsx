@@ -205,7 +205,7 @@ export function Header() {
               transition duration-300 ease-in-out
               rounded-full px-3 py-2"
             >
-              Ingresar
+              Iniciar sesión
             </Link>
           )}
         </div>
