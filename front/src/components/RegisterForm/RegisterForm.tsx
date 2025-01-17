@@ -100,12 +100,12 @@ export function RegisterForm() {
     Object.values(newUserData).every((value) => value.trim() !== "");
 
   return (
-    <div className="w-full p-6 text-center bg-gradient-to-b from-customBlue to-customPink">
+    <div className="flex flex-col items-center w-full p-6 text-center bg-gradient-to-b from-customBlue to-customPink">
       <form
-        className="w-1/2 max-w-md mx-auto bg-customGreen p-4 rounded-lg shadow-lg"
+        className="flex flex-col items-center w-1/2 max-w-md mx-auto bg-customGreen p-4 rounded-2xl shadow-lg"
         onSubmit={handleSubmit}
       >
-        <div className="px-3 py-1 rounded-2xl  bg-slate-900 shadow-lg mb-5">
+        <div className="w-full px-3 py-1 rounded-2xl  bg-slate-900 shadow-lg mb-5">
           <h1>CREAR CUENTA</h1>
         </div>
 
@@ -181,11 +181,11 @@ export function RegisterForm() {
           Registrarse
         </button>
       </form>
-      <div className="flex flex-col mt-5">
+      <div className="flex flex-col items-center mt-5 w-fit">
         <p>Si ya tienes una cuenta</p>
         <Link
           href="/login"
-          className="text-lg underline text-customBlue hover:text-customGreen transition duration-300"
+          className="w-fit text-lg underline text-customBlue hover:text-teal-800 transition duration-300"
         >
           Inicia sesión
         </Link>

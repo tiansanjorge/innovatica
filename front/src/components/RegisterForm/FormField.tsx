@@ -22,14 +22,14 @@ export function FormField({
   onBlur,
 }: FormFieldProps) {
   return (
-    <div className="mt-1 text-sm text-red-500">
+    <div className="w-3/4 mb-3 text-sm text-red-800">
       <label
-        className="block mb-2 text-sm font-medium text-gray-700"
+        className="block mb-1 text-sm font-medium text-gray-700"
         htmlFor={name}
       >
-        {label}:
+        <p className="mb-1">{label}:</p>
         <input
-          className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
           name={name}
           type={type}
           value={value ?? ""}
@@ -37,7 +37,7 @@ export function FormField({
           onBlur={onBlur}
         />
       </label>
-      {touched && error && <p>{error}</p>}
+      {touched && error && <p>{error}*</p>}
     </div>
   );
 }
