@@ -34,7 +34,7 @@ export function OrdersComponent() {
       } else {
         loadOrders();
       }
-    }, 200);
+    }, 300);
 
     return () => {
       clearTimeout(timeoutId);

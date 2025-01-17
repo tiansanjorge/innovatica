@@ -140,7 +140,7 @@ export function LoginForm() {
           {touched.password && errors.password && <p> {errors.password} </p>}
         </div>
         <button
-          className={`px-6 py-2 text-white rounded-lg focus:outline-none focus:ring-2 ${
+          className={`px-6 py-2  rounded-lg focus:outline-none focus:ring-2 ${
             isFormValid
               ? "bg-blue-500 hover:bg-blue-600 focus:ring-blue-400"
               : "bg-gray-300 cursor-not-allowed"

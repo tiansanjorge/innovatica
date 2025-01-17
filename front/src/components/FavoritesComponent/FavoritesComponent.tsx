@@ -29,7 +29,7 @@ export function FavoritesComponent() {
           }
         });
       }
-    }, 200);
+    }, 300);
 
     return () => {
       clearTimeout(timeoutId);
@@ -45,7 +45,7 @@ export function FavoritesComponent() {
             text: "El producto fue incluido en tu carrito",
             icon: `success`,
             showCloseButton: true,
-            confirmButtonText: "Al carrito",
+            confirmButtonText: "Ir al carrito",
           }).then((result) => {
             if (result.isConfirmed) {
               router.push("/cart");
@@ -55,7 +55,7 @@ export function FavoritesComponent() {
           Swal.fire({
             icon: "warning",
             title: "Producto ya en el carrito",
-            text: "Este producto ya está en tu carrito. No puedes agregarlo nuevamente.",
+            text: "Este producto ya está en tu carrito. No puedes añadirlo nuevamente.",
             confirmButtonText: "Entendido",
           });
         }
@@ -93,7 +93,7 @@ export function FavoritesComponent() {
                             handleAddToCart(product);
                           }}
                         >
-                          Al carrito{" "}
+                          Añadir{" "}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
@@ -137,10 +137,10 @@ export function FavoritesComponent() {
                   </GlassEffectDiv>
                 </Link>
               ))}
-              <div className="w-full text-center mt-4">
+              <div className="w-full text-center my-4">
                 <button
                   onClick={clearFav}
-                  className="px-3 py-1 rounded-2xl bg-customPink hover:bg-customGreen transition duration-300 ease-in-out"
+                  className="px-3 py-1 rounded-2xl bg-customPink hover:bg-red-800 transition duration-300 ease-in-out"
                 >
                   Vaciar Favoritos
                 </button>

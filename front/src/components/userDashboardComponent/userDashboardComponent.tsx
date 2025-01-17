@@ -25,7 +25,7 @@ export function UserDashboardComponent() {
           }
         });
       }
-    }, 200);
+    }, 300);
 
     return () => {
       clearTimeout(timeoutId);

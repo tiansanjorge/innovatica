@@ -82,7 +82,7 @@ export const useCartStore = create<ICartState>()(
 //               Swal.fire({
 //                 icon: "warning",
 //                 title: "Producto ya en el carrito",
-//                 text: "Este producto ya está en tu carrito. No puedes agregarlo nuevamente.",
+//                 text: "Este producto ya está en tu carrito. No puedes añadirlo nuevamente.",
 //                 confirmButtonText: "Entendido",
 //               });
 //               console.log(state.cart);

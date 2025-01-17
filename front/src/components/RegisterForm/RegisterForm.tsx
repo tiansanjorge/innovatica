@@ -100,12 +100,14 @@ export function RegisterForm() {
     Object.values(newUserData).every((value) => value.trim() !== "");
 
   return (
-    <div className="w-full bg-gray-100 p-6 text-center">
+    <div className="w-full p-6 text-center bg-gradient-to-b from-customBlue to-customPink">
       <form
-        className="w-1/2 max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg"
+        className="w-1/2 max-w-md mx-auto bg-customGreen p-4 rounded-lg shadow-lg"
         onSubmit={handleSubmit}
       >
-        <h1>Registro</h1>
+        <div className="px-3 py-1 rounded-2xl  bg-slate-900 shadow-lg mb-5">
+          <h1>CREAR CUENTA</h1>
+        </div>
 
         <FormField
           label="Nombre"
@@ -168,21 +170,26 @@ export function RegisterForm() {
           onBlur={handleBlur}
         />
         <button
-          className={`px-6 py-2 text-white rounded-lg focus:outline-none focus:ring-2 ${
+          className={`w-fit mt-3 px-3 py-1 rounded-2xl focus:outline-none focus:ring-2 ${
             isFormValid
-              ? "bg-blue-500 hover:bg-blue-600 focus:ring-blue-400"
+              ? "bg-customBlue hover:bg-customPink "
               : "bg-gray-300 cursor-not-allowed"
           }`}
           type="submit"
           disabled={!isFormValid}
         >
-          Ingresar
+          Registrarse
         </button>
       </form>
-      <p>Si ya tienes una cuenta</p>
-      <Link href="/login">
-        <button>Inicia sesión</button>
-      </Link>
+      <div className="flex flex-col mt-5">
+        <p>Si ya tienes una cuenta</p>
+        <Link
+          href="/login"
+          className="text-lg underline text-customBlue hover:text-customGreen transition duration-300"
+        >
+          Inicia sesión
+        </Link>
+      </div>
     </div>
   );
 }

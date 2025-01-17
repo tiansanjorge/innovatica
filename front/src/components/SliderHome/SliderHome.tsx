@@ -45,7 +45,7 @@ export function SliderHome() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-3 py-1 rounded-full z-10"
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-full z-10 hover:scale-150 hover:text-customPink transition duration-200"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ export function SliderHome() {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-3 py-1 rounded-full z-10"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2  px-3 py-1 rounded-full z-10 hover:scale-150 hover:text-customPink transition duration-200"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -3,7 +3,7 @@ import Link from "next/link";
 export function HelpComponent() {
   return (
     <div
-      className={`w-full pt-6 pb-12 bg-gradient-to-b from-customGreen to-customBlue text-white text-center`}
+      className={`w-full pt-6 pb-12 bg-gradient-to-b from-customGreen to-customBlue  text-center`}
     >
       <h3 className="mb-12 font-bold text-4xl">SOPORTE & ATENCION 24HS</h3>
       <div className="flex justify-evenly items-center">

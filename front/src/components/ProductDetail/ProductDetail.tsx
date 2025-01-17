@@ -60,7 +60,7 @@ export function ProductDetail({ id }: { id: string }) {
     if (!userData?.token) {
       Swal.fire({
         title: "",
-        text: "Debes iniciar sesión para agregar un producto al carrito",
+        text: "Debes iniciar sesión para añadir un producto al carrito",
         icon: "warning",
         showCloseButton: true,
         confirmButtonText: "Iniciar sesión",
@@ -78,7 +78,7 @@ export function ProductDetail({ id }: { id: string }) {
               text: "El producto fue incluido en tu carrito",
               icon: `success`,
               showCloseButton: true,
-              confirmButtonText: "Al carrito",
+              confirmButtonText: "Ir al carrito",
             }).then((result) => {
               if (result.isConfirmed) {
                 router.push("/cart");
@@ -88,7 +88,7 @@ export function ProductDetail({ id }: { id: string }) {
             Swal.fire({
               icon: "warning",
               title: "Producto ya en el carrito",
-              text: "Este producto ya está en tu carrito. No puedes agregarlo nuevamente.",
+              text: "Este producto ya está en tu carrito. No puedes añadirlo nuevamente.",
               confirmButtonText: "Entendido",
             });
           }
@@ -101,7 +101,7 @@ export function ProductDetail({ id }: { id: string }) {
     if (!userData?.token) {
       Swal.fire({
         title: "",
-        text: "Debes iniciar sesión para agregar un producto a favoritos",
+        text: "Debes iniciar sesión para añadir un producto a favoritos",
         icon: "warning",
         showCloseButton: true,
         confirmButtonText: "Iniciar sesión",
@@ -150,7 +150,7 @@ export function ProductDetail({ id }: { id: string }) {
               onClick={handleAddToCart}
               className="flex gap-2 items-center px-4 py-2 bg-customBlue hover:bg-customPink rounded-full transition duration-300 ease-in-out"
             >
-              Agregar al Carrito{" "}
+              Añadir al Carrito{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
