@@ -85,7 +85,7 @@ export function OrdersComponent() {
           Cargando tus compras...
         </div>
       ) : (
-        <div className="flex flex-col items-center text-center py-5">
+        <div className="flex flex-col items-center text-center py-10">
           <div className="px-3 py-1  rounded-2xl  bg-customDarkBlue shadow-lg w-1/4 mb-5">
             <h1>MIS COMPRAS</h1>
           </div>

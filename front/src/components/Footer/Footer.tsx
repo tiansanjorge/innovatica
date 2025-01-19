@@ -66,12 +66,6 @@ export function Footer() {
         </a>
       </div>
       <div className="flex items-center gap-10">
-        <Link
-          href="/help"
-          className="px-4 py-2 text-customBlue hover:text-gray-100  bg-gray-100 hover:bg-customGreen rounded-full transition duration-300 ease-in-out"
-        >
-          Solicitar Asistencia
-        </Link>
         <div className="flex flex-col gap-2">
           <a
             href="mailto:innovatica@gmail.com"

@@ -3,9 +3,7 @@ import { UserDashboardComponent } from "@/components/userDashboardComponent/user
 export default function UserDashboard() {
   return (
     <>
-      <div>
-        <UserDashboardComponent />
-      </div>
+      <UserDashboardComponent />
     </>
   );
 }

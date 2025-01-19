@@ -3,12 +3,14 @@
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useUserStore } from "@/store";
+import { useCartStore, useFavStore, useUserStore } from "@/store";
 import Link from "next/link";
 
 export function UserDashboardComponent() {
   const router = useRouter();
-  const { userData } = useUserStore();
+  const { userData, clearUserData } = useUserStore();
+  const { clearCart } = useCartStore();
+  const { clearFav } = useFavStore();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -33,19 +35,67 @@ export function UserDashboardComponent() {
   }, [userData?.token]);
 
   return (
-    <div>
-      <h1>User Dashboard</h1>
-      <p>Nombre: {userData?.name}</p>
-      <p>Email: {userData?.email}</p>
-      <p>Dirección: {userData?.address}</p>
-      <p>Teléfono: {userData?.phone}</p>
-      <p>Rol: {userData?.role}</p>
-      {userData?.credential && (
-        <>
-          <p>ID de Credencial: {userData?.credential.id}</p>
-        </>
-      )}
-      <Link href="/orders">Mis Compras</Link>
+    <div className="w-3/4 flex justify-evenly px-5 py-10 mx-auto">
+      <div className="w-1/3 flex flex-col items-center">
+        <img src="/images/avatar.png" className="w-64" alt="Usuario" />
+        <p className="text-lg">{userData?.name}</p>
+      </div>
+      <div className="w-2/3 flex flex-col items-center">
+        <div className="px-3 py-1 rounded-2xl bg-customDarkBlue shadow-lg w-full text-center mb-5">
+          <h1>PERFIL</h1>
+        </div>
+        <div className="w-full flex flex-col p-5 mb-5">
+          <p className="flex justify-between">
+            Email: <span>{userData?.email}</span>
+          </p>
+          <p className="flex justify-between">
+            Dirección: <span>{userData?.address}</span>
+          </p>
+          <p className="flex justify-between">
+            Teléfono: <span>{userData?.phone}</span>
+          </p>
+
+          {userData?.credential && (
+            <>
+              <p className="flex justify-between">
+                ID de Usuario: <span>{userData?.credential.id}</span>
+              </p>
+            </>
+          )}
+        </div>
+        <div className="w-full flex justify-evenly">
+          <Link
+            href="/orders"
+            className="w-fit px-3 py-1 rounded-2xl bg-customGreen hover:bg-teal-800 transition duration-300 ease-in-out"
+          >
+            Mis Compras
+          </Link>
+          <button
+            className="w-fit px-3 py-1 rounded-2xl bg-customPink hover:bg-red-800 transition duration-300 ease-in-out"
+            onClick={() => {
+              Swal.fire({
+                title: "Estas seguro que quieres salir?",
+                text: "Tu carrito de compras y tu lista de favoritos se perderán.",
+                icon: "question",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: "Cerrar Sesión",
+                cancelButtonText: "Permanecer",
+                reverseButtons: true,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  router.push("/login");
+                  clearUserData();
+                  clearCart();
+                  clearFav();
+                }
+              });
+            }}
+          >
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
