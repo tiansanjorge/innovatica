@@ -37,7 +37,9 @@ export function SliderHome() {
             <img
               src={image}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover object-center"
+              className={`w-full h-full object-cover ${
+                index == 0 ? "object-right sm:object-center" : "object-center"
+              }`}
             />
           </div>
         ))}
