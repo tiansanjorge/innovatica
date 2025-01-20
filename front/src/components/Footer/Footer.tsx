@@ -1,17 +1,37 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export function Footer() {
+  const [viewportWidth, setViewportWidth] = useState(0);
+
+  useEffect(() => {
+    const updateWidth = () => setViewportWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
   return (
-    <div className="flex items-center justify-evenly px-4 py-5 ">
+    <div className="flex items-center justify-around md:justify-evenly text-sm sm:text-base px-2 py-3 md:px-4 md:py-5 ">
       <Link
         href="/"
-        className="pr-5 pl-2 py-1 bg-gray-100 rounded-full shadow-inset-lg"
+        className="p-1 sm:pr-5 sm:pl-2 sm:py-1 bg-gray-100 rounded-full shadow-inset-lg"
       >
-        <img className="w-64" src="/images/logo.png" alt="Logo" />
+        {viewportWidth > 639 ? (
+          <img
+            className="w-40 lg:w-56 xl:w-64"
+            src="/images/logo.png"
+            alt="Logo"
+          />
+        ) : (
+          <img className="w-12" src="/favicon.png" alt="Logo" />
+        )}
       </Link>
 
-      <div className="flex items-center gap-10">
+      <div className="flex items-center gap-3 md:gap-10">
         <a
           href="https://www.instagram.com"
           target="_blank"
@@ -21,7 +41,7 @@ export function Footer() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-7 h-7 transition duration-300"
+            className="w-5 h-5 sm:w-7 sm:h-7 transition duration-300"
             preserveAspectRatio="xMidYMid"
             viewBox="0 0 256 256"
           >
@@ -39,7 +59,7 @@ export function Footer() {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 36 36"
-            className="w-7 h-7 transition duration-300"
+            className="w-5 h-5 sm:w-7 sm:h-7 transition duration-300"
           >
             <path d="M15 35.8C6.5 34.3 0 26.9 0 18 0 8.1 8.1 0 18 0s18 8.1 18 18c0 8.9-6.5 16.3-15 17.8l-1-.8h-4l-1 .8z" />
             <path
@@ -58,18 +78,18 @@ export function Footer() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-7 h-7 transition duration-300"
+            className="w-5 h-5 sm:w-7 sm:h-7 transition duration-300"
             viewBox="0 0 1200 1227"
           >
             <path d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z" />
           </svg>
         </a>
       </div>
-      <div className="flex items-center gap-10">
-        <div className="flex flex-col gap-2">
+      <div className="flex items-center">
+        <div className="flex flex-col gap-4 sm:gap-2">
           <a
             href="mailto:innovatica@gmail.com"
-            className="flex gap-1 items-center hover:text-customGreen  stroke-gray-100 hover:stroke-customGreen"
+            className="flex flex-col sm:flex-row gap-1 items-center hover:text-customGreen  stroke-gray-100 hover:stroke-customGreen"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +111,7 @@ export function Footer() {
             href="https://wa.me/1562069979"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex gap-1 items-center hover:text-customGreen fill-gray-100 hover:fill-customGreen"
+            className="flex flex-col sm:flex-row gap-1 items-center hover:text-customGreen fill-gray-100 hover:fill-customGreen"
           >
             <svg
               viewBox="0 0 256 259"

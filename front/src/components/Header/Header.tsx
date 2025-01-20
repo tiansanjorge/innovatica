@@ -203,7 +203,7 @@ export function Header() {
           </div>
         </>
       ) : (
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 md:gap-5">
           {pathname !== "/register" && (
             <Link
               href="/register"
