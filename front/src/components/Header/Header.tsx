@@ -18,6 +18,14 @@ export function Header() {
   const { clearFav } = useFavStore();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [viewportWidth, setViewportWidth] = useState(0);
+
+  useEffect(() => {
+    const updateWidth = () => setViewportWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   const shortenUsername = (username: string) => {
     if (username.length > 10) {
@@ -44,18 +52,25 @@ export function Header() {
 
   const handleCloseMenu2 = () => {
     setIsOpen(false);
-    console.log({ userData });
   };
 
   return (
     <div
-      className={`flex items-center justify-evenly text-lg pt-3 pb-4 bg-customDarkBlue ${styles.gradientBorderBottom}`}
+      className={`flex items-center justify-around md:justify-evenly lg:text-lg pt-3 pb-4 bg-customDarkBlue ${styles.gradientBorderBottom}`}
     >
       <Link
         href="/"
-        className="pr-5 pl-2 py-1 bg-gray-100 rounded-full shadow-inset-lg"
+        className="p-1 sm:pr-5 sm:pl-2 sm:py-1 bg-gray-100 rounded-full shadow-inset-lg"
       >
-        <img className="w-64" src="/images/logo.png" alt="Logo" />
+        {viewportWidth > 639 ? (
+          <img
+            className="w-40 lg:w-56 xl:w-64"
+            src="/images/logo.png"
+            alt="Logo"
+          />
+        ) : (
+          <img className="w-12" src="/favicon.png" alt="Logo" />
+        )}
       </Link>
 
       <div className="flex items-center gap-5">
@@ -77,7 +92,7 @@ export function Header() {
               d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
             />
           </svg>
-          <p>Home</p>
+          {viewportWidth > 640 ? <p>Home</p> : null}
         </Link>
       </div>
 
@@ -124,7 +139,7 @@ export function Header() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`
-                pl-3 py-1
+                pl-3
                 ${isOpen ? "bg-customGreen" : "bg-customBlue"}
                 hover:bg-customGreen
                 transition duration-300 ease-in-out
@@ -133,7 +148,11 @@ export function Header() {
               `}
             >
               <p className="px-1">{avatarName}</p>
-              <img src="/images/avatar.png" className="w-16" alt="Usuario" />
+              <img
+                src="/images/avatar.png"
+                className="w-12 lg:w-14 xl:w-16"
+                alt="Usuario"
+              />
             </button>
 
             {isOpen && (

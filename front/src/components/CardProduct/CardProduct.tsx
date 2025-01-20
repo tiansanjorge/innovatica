@@ -6,7 +6,6 @@ import { GlassEffectDiv } from "../UI/GlassEffectDiv";
 
 export function CardProduct({ product }: { product: IProduct }) {
   const { name, price, image, id } = product;
-  console.log(product);
   return (
     <Link
       href={`/products/${id.toString()}`}

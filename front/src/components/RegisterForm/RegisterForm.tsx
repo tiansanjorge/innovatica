@@ -70,8 +70,7 @@ export function RegisterForm() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const data = await RegisterUser(newUserData);
-      console.log(data);
+      await RegisterUser(newUserData);
       Swal.fire({
         title: "Exito!",
         text: "Te has registrado correctamente.",

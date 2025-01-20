@@ -37,7 +37,6 @@ export function CartComponent() {
   }, [userData?.token]);
 
   const finishPurchase = async () => {
-    // setIsLoading(true);
     if (!userData) {
       Swal.fire({
         title: "Error",
@@ -58,8 +57,6 @@ export function CartComponent() {
     );
 
     if (res) {
-      console.log(res);
-      // setIsLoading(false);
       clearCart();
       Swal.fire({
         title: "Listo!",
