@@ -1,7 +1,7 @@
 "use client";
 
 import Swal from "sweetalert2";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCartStore, useFavStore, useUserStore } from "@/store";
 import Link from "next/link";
@@ -11,6 +11,15 @@ export function UserDashboardComponent() {
   const { userData, clearUserData } = useUserStore();
   const { clearCart } = useCartStore();
   const { clearFav } = useFavStore();
+
+  const [viewportWidth, setViewportWidth] = useState(0);
+
+  useEffect(() => {
+    const updateWidth = () => setViewportWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -36,19 +45,27 @@ export function UserDashboardComponent() {
 
   return (
     <div className="w-full flex-grow  px-5 py-10 bg-gradient-to-b from-customBlue to-customGreen">
-      <div className="w-3/4 flex justify-evenly mx-auto">
-        <div className="w-1/3 flex flex-col items-center">
-          <div className="bg-gradient-to-b from-customGreen to-customPink rounded-full mb-5">
+      <div className="flex flex-col sm:flex-row items-center sm:justify-evenly lg:justify-center">
+        <div className="w-full sm:w-1/3 lg:w-1/4 flex flex-col items-center">
+          {viewportWidth > 639 ? null : (
+            <div className="px-3 py-1 rounded-2xl bg-customDarkBlue shadow-lg w-1/2 text-center mb-5">
+              <h1>PERFIL</h1>
+            </div>
+          )}
+          <div className="w-1/3 sm:w-fit bg-gradient-to-b from-customGreen to-customPink rounded-full mb-5">
             <img src="/images/avatar.png" className="w-64" alt="Usuario" />
           </div>
 
           <p className="text-lg">{userData?.name}</p>
         </div>
-        <div className="w-2/3 flex flex-col items-center">
-          <div className="px-3 py-1 rounded-2xl bg-customDarkBlue shadow-lg w-1/2 text-center mb-5">
-            <h1>PERFIL</h1>
-          </div>
-          <div className="w-3/4 flex flex-col p-5 mb-5">
+        <div className="w-full sm:w-1/2 flex flex-col items-center">
+          {viewportWidth < 639 ? null : (
+            <div className="px-3 py-1 rounded-2xl bg-customDarkBlue shadow-lg w-1/2 text-center mb-5">
+              <h1>PERFIL</h1>
+            </div>
+          )}
+
+          <div className="w-10/12 sm:w-full md:w-3/4 flex flex-col p-5 mb-5">
             <p className="flex justify-between">
               Email: <span>{userData?.email}</span>
             </p>
