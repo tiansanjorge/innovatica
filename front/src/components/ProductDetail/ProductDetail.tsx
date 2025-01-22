@@ -119,13 +119,13 @@ export function ProductDetail({ id }: { id: string }) {
 
   return (
     <div className="flex-grow w-full flex justify-center bg-gradient-to-b from-customGreen to-customBlue py-8">
-      <GlassEffectDiv className="w-1/2 flex justify-center items-center p-10 rounded-2xl">
-        <div className="w-7/12 pr-10">
+      <GlassEffectDiv className="w-3/4 lg:w-7/12 xl:w-1/2 flex flex-col sm:flex-row justify-center items-center  mx-5 md:m-0 p-10 rounded-2xl">
+        <div className="w-full sm:w-7/12 sm:pr-10 mb-5 sm:m-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={product?.image} alt=""></img>
+          <img src={product?.image} alt={` ${product?.name}`}></img>
         </div>
-        <div className="w-5/12 flex flex-col justify-evenly">
-          <div className="mb-16">
+        <div className="w-full sm:w-5/12 flex flex-col justify-evenly">
+          <div className="mb-5 sm:mb-16">
             <div className="flex gap-3 items-center mb-5">
               <h2 className=" text-3xl font-bold ">{product?.name}</h2>
             </div>
