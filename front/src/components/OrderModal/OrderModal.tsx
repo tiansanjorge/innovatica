@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import styled from "styled-components";
 import React from "react";
-import { Order } from "../userDashboardComponent/interfaces";
 import { GlassEffectDiv } from "../UI/GlassEffectDiv";
+import { IOrder } from "@/store/interfaces";
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -37,16 +37,20 @@ const ModalContent = styled.div`
 `;
 
 interface OrderModalProps {
-  order: Order | null;
+  order: IOrder | null;
   onClose: () => void;
 }
 
 export function OrderModal({ order, onClose }: OrderModalProps) {
   if (!order) return null;
 
-  const total = order.products.reduce(function (accumulator, product) {
+  const total = order.products.reduce(function (
+    accumulator: number,
+    product: { price: number }
+  ) {
     return accumulator + product.price;
-  }, 0);
+  },
+  0);
 
   return (
     <ModalBackdrop onClick={onClose}>
@@ -87,22 +91,27 @@ export function OrderModal({ order, onClose }: OrderModalProps) {
           </div>
 
           <div className="py-3 flex justify-evenly flex-wrap p-5">
-            {order.products.map((product, index) => (
-              <GlassEffectDiv
-                key={index}
-                className=" rounded-xl flex items-center w-5/12 mb-3"
-              >
-                <img
-                  className="w-1/2 p-3"
-                  src={product.image}
-                  alt="imagen del producto"
-                />
-                <div className="w-1/2 text-start p-2">
-                  <p className="font-bold">{product.name}</p>
-                  <p>${product.price}</p>
-                </div>
-              </GlassEffectDiv>
-            ))}
+            {order.products.map(
+              (
+                product: { image: string; name: string; price: number },
+                index: number
+              ) => (
+                <GlassEffectDiv
+                  key={index}
+                  className=" rounded-xl flex items-center w-5/12 mb-3"
+                >
+                  <img
+                    className="w-1/2 p-3"
+                    src={product.image}
+                    alt="imagen del producto"
+                  />
+                  <div className="w-1/2 text-start p-2">
+                    <p className="font-bold">{product.name}</p>
+                    <p>${product.price}</p>
+                  </div>
+                </GlassEffectDiv>
+              )
+            )}
           </div>
           <p className="font-bold text-xl pb-5">ID de la compra: {order.id}</p>
         </div>

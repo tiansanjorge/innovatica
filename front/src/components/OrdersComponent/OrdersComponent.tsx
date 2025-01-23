@@ -6,16 +6,16 @@ import { useUserStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { Order } from "../userDashboardComponent/interfaces";
 import { OrderModal } from "../OrderModal/OrderModal";
 import { GlassEffectDiv } from "../UI/GlassEffectDiv";
+import { IOrder } from "@/store/interfaces";
 
 export function OrdersComponent() {
   const router = useRouter();
   const { userData } = useUserStore();
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState<IOrder | null>(null);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -70,7 +70,7 @@ export function OrdersComponent() {
     }
   };
 
-  const viewOrder = (order: Order) => {
+  const viewOrder = (order: IOrder) => {
     setSelectedOrder(order);
   };
 
@@ -92,7 +92,7 @@ export function OrdersComponent() {
 
           <div className="flex justify-evenly flex-wrap w-2/3">
             {orders.length > 0 ? (
-              orders.map((order: Order) => (
+              orders.map((order: IOrder) => (
                 <div
                   key={order.id}
                   className="bg-gradient-to-b from-customGreen to-customPink w-5/12 py-4 px-5 rounded-2xl shadow mb-4"

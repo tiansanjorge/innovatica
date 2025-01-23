@@ -69,7 +69,7 @@ export function FavoritesComponent() {
         <div className="px-3 py-1  rounded-2xl  bg-customDarkBlue shadow-lg min-w-fit w-1/4 mb-5">
           <h1>FAVORITOS</h1>
         </div>
-        <div className="flex justify-evenly flex-wrap w-2/3">
+        <div className="flex justify-evenly flex-wrap md:w-3/4 lg:w-2/3">
           {fav.length > 0 ? (
             <>
               {fav.map((product) => (
@@ -80,10 +80,10 @@ export function FavoritesComponent() {
                 >
                   <GlassEffectDiv className="flex justify-evenly items-center w-full border p-4 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
                     <div className="w-1/3">
-                      <img src={product.image} alt="" />
+                      <img src={product.image} alt="imagen del producto" />
                     </div>
                     <div className="flex flex-col gap-3 justify-center">
-                      <p className="text-xl">{product.name}</p>
+                      <p className="lg:text-xl">{product.name}</p>
                       <p>${product.price}</p>
                       <div className="flex flex-col justify-evenly items-center text-sm">
                         <button
