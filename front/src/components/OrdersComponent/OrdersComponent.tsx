@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+
 "use client";
 
 import { getOrdersService } from "@/services/services";
@@ -86,20 +87,23 @@ export function OrdersComponent() {
         </div>
       ) : (
         <div className="flex flex-col items-center text-center py-10">
-          <div className="px-3 py-1  rounded-2xl  bg-customDarkBlue shadow-lg w-1/4 mb-5">
+          <div className="px-3 py-1  rounded-2xl  bg-customDarkBlue shadow-lg min-w-fit w-1/4 mb-5">
             <h1>MIS COMPRAS</h1>
           </div>
 
-          <div className="flex justify-evenly flex-wrap w-2/3">
+          <div className="flex justify-evenly flex-wrap md:w-3/4 lg:w-2/3">
             {orders.length > 0 ? (
               orders.map((order: IOrder) => (
                 <div
                   key={order.id}
-                  className="bg-gradient-to-b from-customGreen to-customPink w-5/12 py-4 px-5 rounded-2xl shadow mb-4"
+                  className="bg-gradient-to-b from-customGreen to-customPink w-3/4 sm:w-5/12 py-4 px-5 rounded-2xl shadow mb-4"
                 >
                   <GlassEffectDiv className="flex justify-evenly items-center w-full border p-4 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
                     <div className="w-1/3">
-                      <img src={order.products[0].image} alt="" />
+                      <img
+                        src={order.products[0].image}
+                        alt="imagen del producto"
+                      />
                     </div>
                     <div className="flex flex-col gap-3 justify-center">
                       <p className="font-bold text-lg">Compra N° {order.id}</p>
