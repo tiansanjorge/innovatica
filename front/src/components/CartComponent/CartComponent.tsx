@@ -14,6 +14,7 @@ export function CartComponent() {
   const router = useRouter();
   const { userData } = useUserStore();
   const { cart, removeFromCart, clearCart } = useCartStore();
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (!userData?.token) {
@@ -85,24 +86,24 @@ export function CartComponent() {
   return (
     <>
       <div className="flex flex-col items-center text-center py-10">
-        <div className="px-3 py-1  rounded-2xl  bg-customDarkBlue shadow-lg w-1/4 mb-5">
+        <div className="px-3 py-1  rounded-2xl  bg-customDarkBlue shadow-lg min-w-fit w-1/4 mb-5">
           <h1>CARRITO</h1>
         </div>
-        <div className="flex justify-evenly flex-wrap w-2/3">
+        <div className="flex justify-evenly flex-wrap md:w-3/4 lg:w-2/3">
           {cart.length > 0 ? (
             <>
               {cart.map((product) => (
                 <Link
                   href={`/products/${product.id.toString()}`}
                   key={product.id}
-                  className="bg-gradient-to-b from-customGreen to-customPink w-5/12 py-4 px-5 rounded-2xl shadow mb-4"
+                  className="bg-gradient-to-b from-customGreen to-customPink w-3/4 sm:w-5/12 py-4 px-5 rounded-2xl shadow mb-4"
                 >
                   <GlassEffectDiv className="flex justify-evenly items-center w-full border p-4 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
                     <div className="w-1/3">
                       <img src={product.image} alt="" />
                     </div>
                     <div className="flex flex-col gap-3 justify-center">
-                      <p className="text-xl">{product.name}</p>
+                      <p className="lg:text-xl">{product.name}</p>
                       <p>${product.price}</p>
                       <div className="flex flex-col justify-evenly items-center text-sm">
                         <button

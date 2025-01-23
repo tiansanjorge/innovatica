@@ -5,7 +5,7 @@ interface PageProps {
 }
 
 export default async function SingleProduct({ params }: PageProps) {
-  const { productID } = await params; // Aquí usamos await porque ahora params es una promesa.
+  const { productID } = await params;
 
   return (
     <div>
