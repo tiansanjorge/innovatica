@@ -55,7 +55,7 @@ export function OrderModal({ order, onClose }: OrderModalProps) {
   return (
     <ModalBackdrop onClick={onClose}>
       <ModalContent
-        className="w-1/2 shadow-xl bg-gradient-to-b from-customGreen to-customPink rounded-2xl p-1"
+        className="w-3/4 lg:w-1/2 shadow-xl bg-gradient-to-b from-customGreen to-customPink rounded-2xl p-1"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="bg-customBlue rounded-xl">
@@ -77,7 +77,7 @@ export function OrderModal({ order, onClose }: OrderModalProps) {
               </svg>
             </button>
           </div>
-          <div className="flex justify-evenly mb-2">
+          <div className="flex flex-col sm:flex-row justify-evenly mb-2">
             <p className="font-bold text-xl">
               {new Date(order.date).toLocaleDateString()}
             </p>
@@ -90,7 +90,7 @@ export function OrderModal({ order, onClose }: OrderModalProps) {
             <p className="font-bold text-xl">${total}</p>
           </div>
 
-          <div className="py-3 flex justify-evenly flex-wrap p-5">
+          <div className="py-3 flex flex-col sm:flex-row justify-evenly flex-wrap p-5">
             {order.products.map(
               (
                 product: { image: string; name: string; price: number },
@@ -98,7 +98,7 @@ export function OrderModal({ order, onClose }: OrderModalProps) {
               ) => (
                 <GlassEffectDiv
                   key={index}
-                  className=" rounded-xl flex items-center w-5/12 mb-3"
+                  className=" rounded-xl flex flex-col sm:flex-row items-center sm:w-5/12 mb-3"
                 >
                   <img
                     className="w-1/2 p-3"
