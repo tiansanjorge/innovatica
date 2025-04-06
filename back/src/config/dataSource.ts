@@ -1,5 +1,11 @@
 import { DataSource } from "typeorm";
-import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } from "./envs";
+import {
+  DB_DATABASE,
+  DB_HOST,
+  DB_PASSWORD,
+  DB_PORT,
+  DB_USERNAME,
+} from "./envs";
 import { User } from "../entities/User";
 import { Credential } from "../entities/Credential";
 import { Order } from "../entities/Order";
@@ -9,10 +15,10 @@ import { Product } from "../entities/Product";
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: DB_HOST,
-  port: DB_PORT,
-  username: DB_USER,
+  port: parseInt(DB_PORT),
+  username: DB_USERNAME,
   password: DB_PASSWORD,
-  database: DB_NAME,
+  database: DB_DATABASE,
   synchronize: true,
   // dropSchema: true,
   logging: false,
