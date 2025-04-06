@@ -15,7 +15,7 @@ import { Product } from "../entities/Product";
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: DB_HOST,
-  port: parseInt(DB_PORT),
+  port: DB_PORT,
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_DATABASE,
