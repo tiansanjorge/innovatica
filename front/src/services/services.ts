@@ -7,7 +7,7 @@ import {
 
 const apiURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
-// PRODUCT SERVICES
+// PRODUCT SERVICES.
 
 export async function getProducts(): Promise<IProduct[]> {
   try {
