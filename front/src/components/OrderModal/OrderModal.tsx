@@ -3,6 +3,7 @@ import styled from "styled-components";
 import React from "react";
 import { GlassEffectDiv } from "../UI/GlassEffectDiv";
 import { IOrder } from "@/store/interfaces";
+import { OptimizedImage } from "../OtimizedImage/optimizedImage";
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -100,10 +101,10 @@ export function OrderModal({ order, onClose }: OrderModalProps) {
                   key={index}
                   className=" rounded-xl flex flex-col sm:flex-row items-center sm:w-5/12 mb-3"
                 >
-                  <img
-                    className="w-1/2 p-3"
+                  <OptimizedImage
                     src={product.image}
                     alt="imagen del producto"
+                    className="w-1/2 p-3"
                   />
                   <div className="w-1/2 text-start p-2">
                     <p className="font-bold">{product.name}</p>

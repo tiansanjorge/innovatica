@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { GlassEffectDiv } from "../UI/GlassEffectDiv";
+import { OptimizedImage } from "../OtimizedImage/optimizedImage";
 
 export function ProductDetail({ id }: { id: string }) {
   const router = useRouter();
@@ -116,13 +117,17 @@ export function ProductDetail({ id }: { id: string }) {
       }
     }
   };
+  if (!product) return null;
 
   return (
     <div className="flex-grow w-full flex justify-center bg-gradient-to-b from-customGreen to-customBlue py-8">
       <GlassEffectDiv className="w-3/4 lg:w-7/12 xl:w-1/2 flex flex-col sm:flex-row justify-center items-center  mx-5 md:m-0 p-10 rounded-2xl">
         <div className="w-full sm:w-7/12 sm:pr-10 mb-5 sm:m-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={product?.image} alt={` ${product?.name}`}></img>
+          <OptimizedImage
+            src={product?.image}
+            alt={product.name}
+            className=""
+          />
         </div>
         <div className="w-full sm:w-5/12 flex flex-col justify-evenly">
           <div className="mb-5 sm:mb-16">

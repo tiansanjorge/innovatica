@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import { OrderModal } from "../OrderModal/OrderModal";
 import { GlassEffectDiv } from "../UI/GlassEffectDiv";
 import { IOrder } from "@/store/interfaces";
+import { OptimizedImage } from "../OtimizedImage/optimizedImage";
 
 export function OrdersComponent() {
   const router = useRouter();
@@ -100,9 +101,10 @@ export function OrdersComponent() {
                 >
                   <GlassEffectDiv className="flex justify-evenly items-center w-full border p-4 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
                     <div className="w-1/3">
-                      <img
+                      <OptimizedImage
                         src={order.products[0].image}
                         alt="imagen del producto"
+                        className=""
                       />
                     </div>
                     <div className="flex flex-col gap-3 justify-center">
