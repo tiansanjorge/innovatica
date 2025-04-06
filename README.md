@@ -19,11 +19,11 @@ _E-commerce de tecnología • Proyecto Académico (10/10)_
 
 ## 📷 Capturas
 
-![Home Screenshot](https://imgur.com/hkLWWrs)
+![Home Screenshot](https://i.imgur.com/hkLWWrs.png)
 
-![Detail Screenshot](https://imgur.com/yXxlSje)
+![Detail Screenshot](https://i.imgur.com/yXxlSje.png)
 
-![Order Screenshot](https://imgur.com/QZBeoiN)
+![Order Screenshot](https://i.imgur.com/QZBeoiN.png)
 
 ---
 
