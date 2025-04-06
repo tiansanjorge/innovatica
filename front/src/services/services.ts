@@ -5,7 +5,7 @@ import {
   IUserRegisterData,
 } from "@/services/interfaces";
 
-const apiURL = process.env.NEXT_PUBLIC_API_URL;
+const apiURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 // PRODUCT SERVICES
 
