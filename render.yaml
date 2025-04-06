@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: innovatica-backend
+    env: node
+    rootDir: back
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 18
