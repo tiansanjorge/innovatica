@@ -2,7 +2,7 @@
 
 _E-commerce de tecnología • Proyecto Académico (10/10)_
 
-👉 https://innovaticatech.vercel.app/
+<a href="https://innovaticatech.vercel.app" target="_blank">👉 Ingresar</a>
 
 ---
 
