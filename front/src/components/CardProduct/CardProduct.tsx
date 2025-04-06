@@ -3,6 +3,7 @@
 import { IProduct } from "@/Interfaces/interfaces";
 import Link from "next/link";
 import { GlassEffectDiv } from "../UI/GlassEffectDiv";
+import { OptimizedImage } from "../OtimizedImage/optimizedImage";
 
 export function CardProduct({ product }: { product: IProduct }) {
   const { name, price, image, id } = product;
@@ -13,11 +14,11 @@ export function CardProduct({ product }: { product: IProduct }) {
     >
       <GlassEffectDiv className="flex flex-col justify-between text-center m-2 rounded-xl ">
         <div className="flex items-center p-3 h-72">
-          <img
+          <OptimizedImage
             src={image}
             alt={`${name}`}
             className="w-44 sm:w-52 lg:w-64"
-          ></img>
+          />
         </div>
         <div className="bg-customBlue text-gray-100 rounded-b-xl p-2">
           <h3>{name}</h3>

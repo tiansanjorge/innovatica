@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import { GlassEffectDiv } from "../UI/GlassEffectDiv";
+import { OptimizedImage } from "../OtimizedImage/optimizedImage";
 
 export function CartComponent() {
   const router = useRouter();
@@ -100,7 +101,7 @@ export function CartComponent() {
                 >
                   <GlassEffectDiv className="flex justify-evenly items-center w-full border p-4 rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
                     <div className="w-1/3">
-                      <img src={product.image} alt="" />
+                      <OptimizedImage src={product.image} alt="" className="" />
                     </div>
                     <div className="flex flex-col gap-3 justify-center">
                       <p className="lg:text-xl">{product.name}</p>
