@@ -20,7 +20,8 @@
     "reflect-metadata": "^0.2.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
-    "typeorm": "^0.3.22"
+    "typeorm": "^0.3.22",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -31,7 +32,6 @@
     "@types/node": "^20.17.30",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
-    "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2"
   }
