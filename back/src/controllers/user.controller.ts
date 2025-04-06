@@ -28,3 +28,5 @@ export const login = catchedController(async (req: Request, res: Response) => {
     token: user.token,
   });
 });
+
+// -
